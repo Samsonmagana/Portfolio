@@ -1,0 +1,698 @@
+/*
+ * Samson Magana — Portfolio stylesheet
+ *
+ * 1. Design tokens        — colours, fonts, safe-area padding
+ * 2. Reset & typography
+ * 3. Layout primitives    — wrap, grid, sections
+ * 4. Header & navigation
+ * 5. Hero & ticker
+ * 6. Cards & content
+ * 7. Timeline (process)
+ * 8. Playground
+ * 9. Contact & footer
+ * 10. Motion & responsive
+ */
+
+/* 1. Design tokens */
+
+:root {
+  /* Light theme (default) */
+  --bg:         #F5F7FA;
+  --panel:      #FFFFFF;
+  --ink:        #0E1A2B;
+  --muted:      #52627A;
+  --line:       #D5DCE6;
+  --accent:     #0B7A75;
+  --on-accent:  #FFFFFF;
+  --glow:       rgba(11, 122, 117, .16);
+  --node:       11, 122, 117;
+
+  color-scheme: light;
+  padding-top:    env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* Dark theme when the OS requests it AND the user has not overridden it. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:         #0A121D;
+    --panel:      #101C2D;
+    --ink:        #E8EEF6;
+    --muted:      #90A2BA;
+    --line:       #22324A;
+    --accent:     #4FD1C5;
+    --on-accent:  #06242A;
+    --glow:       rgba(79, 209, 197, .16);
+    --node:       79, 209, 197;
+    color-scheme: dark;
+  }
+}
+
+/* Dark theme when the user has explicitly chosen it. */
+:root[data-theme="dark"] {
+  --bg:         #0A121D;
+  --panel:      #101C2D;
+  --ink:        #E8EEF6;
+  --muted:      #90A2BA;
+  --line:       #22324A;
+  --accent:     #4FD1C5;
+  --on-accent:  #06242A;
+  --glow:       rgba(79, 209, 197, .16);
+  --node:       79, 209, 197;
+  color-scheme: dark;
+}
+
+/* 2. Reset & typography */
+
+html {
+  scroll-padding-top: calc(4.5rem + env(safe-area-inset-top, 0px));
+  scroll-behavior: smooth;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 400 1.05rem/1.7 "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+  overflow-x: hidden;
+}
+
+/* Fill the status-bar area on notched phones so the header reads cleanly. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0 0 auto;
+  height: env(safe-area-inset-top, 0px);
+  background: var(--bg);
+  z-index: 60;
+}
+
+h1, h2, h3 {
+  font-family: "Sora", "Manrope", system-ui, sans-serif;
+  margin: 0;
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+}
+
+a { color: var(--accent); }
+
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+.noscript {
+  padding: 1rem clamp(1.1rem, 4vw, 2rem);
+  background: var(--glow);
+  color: var(--ink);
+  text-align: center;
+  border-bottom: 1px solid var(--line);
+}
+
+/* 3. Layout primitives */
+
+.wrap {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 clamp(1.1rem, 4vw, 2rem);
+}
+
+section { padding: clamp(4rem, 9vw, 7rem) 0; }
+
+h2 {
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  margin-bottom: 1rem;
+}
+
+.lead {
+  color: var(--muted);
+  max-width: 38rem;
+  margin: 0 0 3rem;
+  font-size: 1.12rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+  gap: 1.2rem;
+}
+.grid.solo {
+  grid-template-columns: minmax(0, 48rem);
+  justify-content: center;
+}
+
+/* 4. Header & navigation */
+
+header {
+  position: sticky;
+  top: env(safe-area-inset-top, 0px);
+  z-index: 50;
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
+}
+
+header .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  height: 4rem;
+}
+
+.logo {
+  font: 700 1.1rem "Sora", sans-serif;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.8rem, 2.5vw, 1.8rem);
+}
+nav a {
+  color: var(--muted);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: color 0.2s;
+}
+nav a:hover { color: var(--ink); }
+
+#theme {
+  background: none;
+  border: 1px solid var(--line);
+  color: var(--ink);
+  border-radius: 999px;
+  width: 2.3rem;
+  height: 2.3rem;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: transform 0.4s, border-color 0.2s;
+}
+#theme:hover {
+  transform: rotate(180deg);
+  border-color: var(--accent);
+}
+
+#bar {
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  height: 3px;
+  width: 100%;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+/* 5. Hero & ticker */
+
+.hero {
+  position: relative;
+  /* Fallback for older engines, then the small-viewport unit for mobile. */
+  min-height: calc(100vh  - 4rem);
+  min-height: calc(100svh - 4rem);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+#net {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.hero .wrap {
+  position: relative;
+  padding-top: 4rem;
+  padding-bottom: 5rem;
+}
+
+.hello {
+  color: var(--muted);
+  font-weight: 500;
+  margin: 0 0 1rem;
+}
+
+.name {
+  font-size: clamp(3rem, 11vw, 8rem);
+  font-weight: 700;
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 0.28em;
+}
+.word {
+  display: inline-flex;
+  overflow: hidden;
+  padding-bottom: 0.08em;
+}
+.ch {
+  display: inline-block;
+  transform: translateY(105%);
+  animation: letter-up 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  animation-delay: calc(var(--i) * 55ms + 150ms);
+}
+@keyframes letter-up { to { transform: none; } }
+
+.tag {
+  font: 500 clamp(1.15rem, 2.6vw, 1.7rem)/1.4 "Sora", sans-serif;
+  margin: 1.4rem 0 0.4rem;
+  max-width: 36rem;
+}
+
+.type {
+  font: 500 clamp(1rem, 2vw, 1.2rem) "Manrope", sans-serif;
+  color: var(--accent);
+  min-height: 1.8em;
+}
+.type::after {
+  content: "";
+  display: inline-block;
+  width: 2px;
+  height: 1.1em;
+  margin-left: 3px;
+  background: var(--accent);
+  vertical-align: -0.15em;
+  animation: blink 1s steps(1) infinite;
+}
+@keyframes blink { 50% { opacity: 0; } }
+
+.fade {
+  opacity: 0;
+  animation: fade-in 0.9s ease forwards;
+  animation-delay: var(--d, 1.1s);
+}
+@keyframes fade-in { to { opacity: 1; } }
+
+.btns {
+  display: flex;
+  gap: 0.9rem;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.85rem 1.5rem;
+  border-radius: 999px;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1.5px solid var(--accent);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s;
+}
+.btn.p { background: var(--accent); color: var(--on-accent); }
+.btn.g { color: var(--accent); }
+.btn:hover   { box-shadow: 0 10px 28px var(--glow); }
+.btn.g:hover { background: var(--glow); }
+
+.cue {
+  position: absolute;
+  left: 50%;
+  bottom: 1.4rem;
+  width: 1.5px;
+  height: 3rem;
+  background: linear-gradient(var(--accent), transparent);
+  transform-origin: top;
+  animation: cue-pulse 2s ease-in-out infinite;
+}
+@keyframes cue-pulse {
+  0%   { transform: scaleY(0); }
+  50%  { transform: scaleY(1); }
+  100% { transform: scaleY(1); opacity: 0; }
+}
+
+/* Ticker */
+.ticker {
+  border-block: 1px solid var(--line);
+  overflow: hidden;
+  padding: 1.1rem 0;
+  background: var(--panel);
+}
+.track {
+  display: flex;
+  width: max-content;
+  animation: ticker-scroll 28s linear infinite;
+}
+.ticker:hover .track { animation-play-state: paused; }
+.track span {
+  font: 600 1.25rem "Sora", sans-serif;
+  color: var(--muted);
+  padding: 0 2.2rem;
+  white-space: nowrap;
+}
+.track span::after {
+  content: "";
+  display: inline-block;
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  background: var(--accent);
+  margin-left: 2.2rem;
+  vertical-align: middle;
+}
+@keyframes ticker-scroll { to { transform: translateX(-50%); } }
+
+/* 6. Cards & content */
+
+.card {
+  position: relative;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 1.9rem;
+  overflow: hidden;
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.3s;
+}
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  /* Default to centre so the glow looks intentional before the pointer moves. */
+  background: radial-gradient(380px circle at var(--x, 50%) var(--y, 50%), var(--glow), transparent 65%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+.card:hover {
+  transform: translateY(-6px);
+  border-color: var(--accent);
+}
+.card:hover::before { opacity: 1; }
+.card > * { position: relative; }
+
+.card h3 { font-size: 1.3rem; margin-bottom: 0.7rem; }
+.card p  { margin: 0; color: var(--muted); }
+
+.ico {
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 12px;
+  background: var(--glow);
+  color: var(--accent);
+  display: grid;
+  place-items: center;
+  margin-bottom: 1.2rem;
+  font-size: 1.2rem;
+  transition: transform 0.4s;
+}
+.card:hover .ico {
+  transform: rotate(-8deg) scale(1.1);
+}
+
+.card.empty {
+  border-style: dashed;
+  background: transparent;
+}
+
+.badge {
+  display: inline-block;
+  font: 600 0.72rem "Sora", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  background: var(--glow);
+  border-radius: 999px;
+  padding: 0.18rem 0.65rem;
+  margin-bottom: 0.85rem;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 1.2rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+.tags li {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.1rem 0.75rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.links {
+  display: flex;
+  gap: 1.2rem;
+  margin-top: 1.2rem;
+  font-weight: 600;
+}
+
+.about {
+  display: grid;
+  grid-template-columns: 1.4fr 0.9fr;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  align-items: start;
+}
+.about p      { color: var(--muted); margin: 0 0 1rem; max-width: 38rem; }
+.about p strong { color: var(--ink); }
+
+.facts {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 1.5rem;
+}
+.facts dt {
+  font: 600 0.78rem "Sora", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  margin-bottom: 0.2rem;
+}
+.facts dd              { margin: 0 0 1.1rem; font-weight: 600; }
+.facts dd:last-child   { margin-bottom: 0; }
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1rem;
+  margin-top: 2.5rem;
+}
+.stats div {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 1.2rem 1.3rem;
+}
+.stats b {
+  display: block;
+  font: 700 clamp(1.6rem, 4vw, 2.2rem)/1 "Sora", sans-serif;
+  color: var(--accent);
+}
+.stats span { font-size: 0.9rem; color: var(--muted); }
+
+.certs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 2rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+.certs li {
+  border: 1px dashed var(--line);
+  border-radius: 999px;
+  padding: 0.25rem 0.85rem;
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+
+@media (max-width: 760px) {
+  .about { grid-template-columns: 1fr; }
+}
+
+.period {
+  display: inline-block;
+  font: 600 0.76rem "Sora", sans-serif;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.65rem;
+}
+.org        { color: var(--muted); font-weight: 600; margin: 0.15rem 0 0; }
+.bullets    { margin: 0.9rem 0 0; padding-left: 1.1rem; color: var(--muted); }
+.bullets li { margin-bottom: 0.35rem; }
+
+/* 7. Timeline (process)
+
+   The track and progress fill live in .tlwrap, not inside the <ol>, so the
+   markup stays valid while the visuals are unchanged. */
+
+.tlwrap { position: relative; }
+
+.tlwrap::before,
+.tlwrap .fill {
+  content: "";
+  position: absolute;
+  left: 0.55rem;
+  top: 0.4rem;
+  bottom: 0.4rem;
+  width: 2px;
+}
+.tlwrap::before { background: var(--line); }
+.tlwrap .fill {
+  background: var(--accent);
+  transform: scaleY(0);
+  transform-origin: top;
+}
+
+.tl {
+  position: relative;
+  margin: 0;
+  padding: 0 0 0 2.6rem;
+  list-style: none;
+  max-width: 46rem;
+}
+.tl li             { position: relative; padding: 0 0 2.4rem; }
+.tl li:last-child  { padding-bottom: 0; }
+.tl li::before {
+  content: "";
+  position: absolute;
+  left: -2.6rem;
+  top: 0.45rem;
+  width: 1.15rem;
+  height: 1.15rem;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 2px solid var(--line);
+  transition: background 0.5s, border-color 0.5s, box-shadow 0.5s;
+}
+.tl li.on::before {
+  background: var(--accent);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 7px var(--glow);
+}
+.tl h3 { font-size: 1.3rem; margin-bottom: 0.35rem; }
+.tl p  { margin: 0; color: var(--muted); }
+
+/* 8. Playground */
+
+.lab {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  overflow: hidden;
+  background: var(--panel);
+}
+.lab > * { min-width: 0; }
+
+.lab textarea {
+  display: block;
+  width: 100%;
+  height: 21rem;
+  resize: none;
+  border: 0;
+  border-right: 1px solid var(--line);
+  padding: 1.2rem;
+  background: #0A121D;
+  color: #DCE6F5;
+  font: 0.86rem/1.6 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  tab-size: 2;
+}
+
+.lab iframe {
+  display: block;
+  width: 100%;
+  height: 21rem;
+  border: 0;
+  background: #fff;
+}
+
+/* 9. Contact & footer */
+
+.mail {
+  display: inline-block;
+  font: 700 clamp(1.4rem, 5vw, 3rem) "Sora", sans-serif;
+  color: var(--ink);
+  text-decoration: none;
+  word-break: break-word;
+  background: linear-gradient(var(--accent), var(--accent)) 0 100% / 0 3px no-repeat;
+  transition: background-size 0.5s ease;
+  padding-bottom: 0.2rem;
+}
+.mail:hover { background-size: 100% 3px; }
+
+.phones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem 2.5rem;
+  margin-top: 1.5rem;
+}
+.phones a {
+  font: 600 1.15rem "Sora", sans-serif;
+  text-decoration: none;
+  color: var(--ink);
+}
+.phones span {
+  display: block;
+  font: 600 0.72rem "Sora", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  margin-bottom: 0.1rem;
+}
+
+footer {
+  border-top: 1px solid var(--line);
+  padding: 1.6rem 0 2.2rem;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+footer .wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 1.5rem;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* 10. Motion & responsive */
+
+/* Reveal animation: only active when JS is available (see <head> script). */
+.js .rv {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.8s ease,
+              transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition-delay: var(--d, 0s);
+}
+.js .rv.in {
+  opacity: 1;
+  transform: none;
+}
+
+@media (max-width: 760px) {
+  .lab { grid-template-columns: 1fr; }
+  .lab textarea {
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+    height: 14rem;
+  }
+  .lab iframe  { height: 16rem; }
+  nav a.hide   { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .ch,
+  .fade,
+  .cue,
+  .type::after,
+  .track       { animation: none; }
+  .fade        { opacity: 1; }
+  .ch          { transform: none; }
+  .js .rv      { opacity: 1; transform: none; transition: none; }
+  .card,
+  .btn         { transition: none; }
+}
