@@ -1,0 +1,546 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="Sam Enterprise IT performance reports and analytics">
+
+    <title>Reports & Analytics | Sam Enterprise</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+
+<div class="app-container">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+
+        <div class="brand">
+            <div class="brand-icon">S</div>
+            <div>
+                <h2>SAM ENTERPRISE</h2>
+                <span>IT SERVICE MANAGEMENT</span>
+            </div>
+        </div>
+
+        <div class="sidebar-label">ADMINISTRATION</div>
+
+        <nav class="navigation">
+
+            <a href="admin.html" class="nav-link">
+                <i data-lucide="layout-dashboard"></i>
+                <span>Admin Dashboard</span>
+            </a>
+
+            <a href="users.html" class="nav-link">
+                <i data-lucide="users"></i>
+                <span>User Management</span>
+            </a>
+
+            <a href="technician.html" class="nav-link">
+                <i data-lucide="headset"></i>
+                <span>Technician Workspace</span>
+            </a>
+
+            <a href="assets.html" class="nav-link">
+                <i data-lucide="monitor"></i>
+                <span>IT Asset Management</span>
+            </a>
+
+            <a href="tickets.html" class="nav-link">
+                <i data-lucide="ticket"></i>
+                <span>Support Tickets</span>
+            </a>
+
+        </nav>
+
+        <div class="sidebar-label">MANAGEMENT</div>
+
+        <nav class="navigation">
+
+            <a href="reports.html" class="nav-link active">
+                <i data-lucide="chart-no-axes-combined"></i>
+                <span>Reports & Analytics</span>
+            </a>
+
+            <a href="knowledge-base.html" class="nav-link">
+                <i data-lucide="book-open"></i>
+                <span>Knowledge Base</span>
+            </a>
+
+            <a href="settings.html" class="nav-link">
+                <i data-lucide="settings"></i>
+                <span>System Settings</span>
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <div class="support-card">
+                <i data-lucide="chart-no-axes-combined"></i>
+                <h4>Performance Centre</h4>
+                <p>Monitor incidents, analyse performance and export reports.</p>
+            </div>
+
+            <div class="user-profile">
+                <div class="avatar">SA</div>
+                <div class="user-info">
+                    <strong>System Admin</strong>
+                    <span>Administrator Â· Demo</span>
+                </div>
+                <i data-lucide="chevron-down"></i>
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <div class="topbar-left">
+
+                <button class="menu-toggle" id="menuToggle"
+                        aria-label="Toggle navigation">
+                    <i data-lucide="menu"></i>
+                </button>
+
+                <div>
+                    <span class="breadcrumb">Management /</span>
+                    <strong>Reports & Analytics</strong>
+                </div>
+
+            </div>
+
+            <div class="topbar-right">
+
+                <div class="system-status">
+                    <span class="status-dot"></span>
+                    Analytics Active
+                </div>
+
+                <button class="icon-button" aria-label="Notifications">
+                    <i data-lucide="bell"></i>
+                </button>
+
+                <div class="topbar-user">
+                    <div class="avatar">SA</div>
+                    <div>
+                        <strong>System Admin</strong>
+                        <span>Administrator</span>
+                    </div>
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- REPORTS CONTENT -->
+        <section class="dashboard-content reports-content">
+
+            <!-- INTRODUCTION -->
+            <div class="welcome-section">
+
+                <div>
+                    <p class="date-label" id="reportsDate"></p>
+
+                    <h1>Reports & Analytics</h1>
+
+                    <p>
+                        Analyse IT service performance and monitor operational trends.
+                    </p>
+                </div>
+
+                <button type="button" class="primary-button"
+                        id="exportReports">
+
+                    <i data-lucide="download"></i>
+                    Export CSV Report
+
+                </button>
+
+            </div>
+
+
+            <!-- REPORT FILTERS -->
+            <section class="content-panel report-filter-panel">
+
+                <div class="report-filter-heading">
+
+                    <div>
+                        <h2>Report Filters</h2>
+                        <p>Choose the information you want to analyse.</p>
+                    </div>
+
+                    <button type="button" id="resetReportFilters"
+                            class="report-reset-button">
+                        <i data-lucide="rotate-ccw"></i>
+                        Reset
+                    </button>
+
+                </div>
+
+
+                <div class="report-filters-grid">
+
+                    <div class="form-group">
+
+                        <label for="reportPeriod">Reporting Period</label>
+
+                        <select id="reportPeriod">
+
+                            <option value="7">Last 7 days</option>
+
+                            <option value="30" selected>Last 30 days</option>
+
+                            <option value="90">Last 90 days</option>
+
+                            <option value="all">All recorded time</option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="reportDepartment">Department</label>
+
+                        <select id="reportDepartment">
+
+                            <option value="All">All Departments</option>
+
+                            <option value="Finance">Finance</option>
+
+                            <option value="Human Resources">Human Resources</option>
+
+                            <option value="Information Technology">
+                                Information Technology
+                            </option>
+
+                            <option value="Operations">Operations</option>
+
+                            <option value="Administration">Administration</option>
+
+                            <option value="Marketing">Marketing</option>
+
+                            <option value="Sales">Sales</option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="reportPriority">Priority Level</label>
+
+                        <select id="reportPriority">
+
+                            <option value="All">All Priorities</option>
+
+                            <option value="Critical">Critical</option>
+
+                            <option value="High">High</option>
+
+                            <option value="Medium">Medium</option>
+
+                            <option value="Low">Low</option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+                <div class="report-filter-result" id="reportFilterResult">
+                    Showing all matching records.
+                </div>
+
+            </section>
+
+
+            <!-- KPI STATISTICS -->
+            <section class="stats-grid report-kpi-grid">
+
+                <article class="stat-card">
+
+                    <div class="stat-top">
+                        <span>Total Tickets</span>
+
+                        <div class="stat-icon blue">
+                            <i data-lucide="ticket"></i>
+                        </div>
+                    </div>
+
+                    <h2 id="reportTotalTickets">0</h2>
+
+                    <p class="stat-description">
+                        Recorded incidents in selected period
+                    </p>
+
+                </article>
+
+
+                <article class="stat-card">
+
+                    <div class="stat-top">
+                        <span>Resolved Tickets</span>
+
+                        <div class="stat-icon green">
+                            <i data-lucide="check-circle"></i>
+                        </div>
+                    </div>
+
+                    <h2 id="reportResolvedTickets">0</h2>
+
+                    <p class="stat-description">
+                        Successfully completed incidents
+                    </p>
+
+                </article>
+
+
+                <article class="stat-card">
+
+                    <div class="stat-top">
+                        <span>Resolution Rate</span>
+
+                        <div class="stat-icon purple">
+                            <i data-lucide="chart-no-axes-combined"></i>
+                        </div>
+                    </div>
+
+                    <h2 id="reportResolutionRate">0%</h2>
+
+                    <p class="stat-description">
+                        Resolved tickets divided by total tickets
+                    </p>
+
+                </article>
+
+
+                <article class="stat-card">
+
+                    <div class="stat-top">
+                        <span>Open Backlog</span>
+
+                        <div class="stat-icon orange">
+                            <i data-lucide="folder-open"></i>
+                        </div>
+                    </div>
+
+                    <h2 id="reportBacklog">0</h2>
+
+                    <p class="stat-description">
+                        Tickets still requiring attention
+                    </p>
+
+                </article>
+
+            </section>
+
+
+            <!-- RESOLUTION TIME -->
+            <section class="report-resolution-strip">
+
+                <div class="report-resolution-icon">
+                    <i data-lucide="clock"></i>
+                </div>
+
+                <div>
+                    <span>Average Resolution Time</span>
+                    <strong id="averageResolutionTime">Not available</strong>
+                    <p id="resolutionTimeDescription">
+                        Calculated using resolved tickets with valid timestamps.
+                    </p>
+                </div>
+
+            </section>
+
+
+            <!-- CHARTS -->
+            <section class="report-charts-grid">
+
+                <!-- TICKET TREND -->
+                <div class="content-panel report-chart-panel">
+
+                    <div class="panel-header">
+                        <div>
+                            <h2>Ticket Volume Trend</h2>
+                            <p>Daily number of submitted tickets</p>
+                        </div>
+                    </div>
+
+                    <div class="volume-chart" id="ticketVolumeChart">
+
+                        <!-- JavaScript builds the chart -->
+
+                    </div>
+
+                    <div class="chart-legend">
+                        <span class="legend-dot blue-dot"></span>
+                        Submitted tickets
+                    </div>
+
+                </div>
+
+
+                <!-- STATUS DISTRIBUTION -->
+                <div class="content-panel report-chart-panel">
+
+                    <div class="panel-header">
+                        <div>
+                            <h2>Ticket Status Breakdown</h2>
+                            <p>Distribution of current ticket statuses</p>
+                        </div>
+                    </div>
+
+                    <div class="status-chart" id="ticketStatusChart">
+
+                        <!-- JavaScript builds status bars -->
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- CATEGORY AND DEPARTMENT -->
+            <section class="report-charts-grid">
+
+                <div class="content-panel report-chart-panel">
+
+                    <div class="panel-header">
+                        <div>
+                            <h2>Issues by Category</h2>
+                            <p>Identify frequently reported IT problems</p>
+                        </div>
+                    </div>
+
+                    <div id="categoryBreakdown">
+
+                        <!-- JavaScript builds category chart -->
+
+                    </div>
+
+                </div>
+
+
+                <div class="content-panel report-chart-panel">
+
+                    <div class="panel-header">
+                        <div>
+                            <h2>Tickets by Department</h2>
+                            <p>Departments reporting the most incidents</p>
+                        </div>
+                    </div>
+
+                    <div id="departmentBreakdown">
+
+                        <!-- JavaScript builds department chart -->
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- TECHNICIAN PERFORMANCE -->
+            <section class="content-panel">
+
+                <div class="panel-header">
+                    <div>
+                        <h2>Technician Workload</h2>
+                        <p>Ticket assignment and resolution overview</p>
+                    </div>
+                </div>
+
+                <div class="table-wrapper">
+
+                    <table class="reports-table">
+
+                        <thead>
+                            <tr>
+                                <th>Technician</th>
+                                <th>Assigned Tickets</th>
+                                <th>Resolved</th>
+                                <th>In Progress</th>
+                                <th>Open / Pending</th>
+                                <th>Resolution Rate</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="technicianReportTable">
+
+                            <!-- JavaScript generates technician data -->
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+                <p class="report-empty" id="technicianReportEmpty">
+                    No technician assignments are available for this selection.
+                </p>
+
+            </section>
+
+
+            <!-- REPORT SUMMARY -->
+            <section class="content-panel report-insights-panel">
+
+                <div class="panel-header">
+                    <div>
+                        <h2>Management Insights</h2>
+                        <p>Observations based on the selected report data.</p>
+                    </div>
+                </div>
+
+                <div id="managementInsights">
+
+                    <!-- JavaScript generates insights -->
+
+                </div>
+
+            </section>
+
+
+            <footer class="footer">
+
+                <span>Â© 2026 Sam Enterprise. All rights reserved.</span>
+
+                <span>Reports & Analytics Â· Version 1.0</span>
+
+            </footer>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script src="../js/demo-engine.js"></script>
+<script src="../js/app.js"></script>
+<script src="../js/reports.js"></script>
+
+</body>
+
+</html>
+

@@ -1,0 +1,817 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="Sam Enterprise employee and organisational access management">
+
+    <title>Employee Management | Sam Enterprise</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+
+<div class="app-container">
+
+    <aside class="sidebar" id="sidebar">
+
+        <div class="brand">
+            <div class="brand-icon">S</div>
+            <div>
+                <h2>SAM ENTERPRISE</h2>
+                <span>IT SERVICE MANAGEMENT</span>
+            </div>
+        </div>
+
+        <div class="sidebar-label">ADMINISTRATION</div>
+
+        <nav class="navigation">
+
+            <a href="admin.html" class="nav-link">
+                <i data-lucide="layout-dashboard"></i>
+                <span>Admin Dashboard</span>
+            </a>
+
+            <a href="users.html" class="nav-link active">
+                <i data-lucide="users"></i>
+                <span>Employee Management</span>
+            </a>
+
+            <a href="technician.html" class="nav-link">
+                <i data-lucide="headset"></i>
+                <span>Technician Workspace</span>
+            </a>
+
+            <a href="assets.html" class="nav-link">
+                <i data-lucide="monitor"></i>
+                <span>IT Assets</span>
+            </a>
+
+            <a href="tickets.html" class="nav-link">
+                <i data-lucide="ticket"></i>
+                <span>Support Tickets</span>
+            </a>
+
+            <a href="knowledge-base.html" class="nav-link">
+                <i data-lucide="book-open"></i>
+                <span>Knowledge Base</span>
+            </a>
+
+        </nav>
+
+        <div class="sidebar-label">SYSTEM</div>
+
+        <nav class="navigation">
+
+            <a href="settings.html" class="nav-link">
+                <i data-lucide="settings"></i>
+                <span>System Settings</span>
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <div class="support-card">
+                <i data-lucide="users"></i>
+                <h4>Employee Management</h4>
+                <p>Manage company employees, organisational roles and account access.</p>
+            </div>
+
+            <div class="user-profile">
+                <div class="avatar" id="sidebarAvatar">U</div>
+
+                <div class="user-info">
+                    <strong id="sidebarUserName">Loading user...</strong>
+                    <span id="sidebarUserRole">Loading role...</span>
+                </div>
+
+                <i data-lucide="chevron-down"></i>
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <div class="topbar-left">
+
+                <button class="menu-toggle"
+                        id="menuToggle"
+                        aria-label="Toggle navigation">
+                    <i data-lucide="menu"></i>
+                </button>
+
+                <div>
+                    <span class="breadcrumb">Administration /</span>
+                    <strong>Employee Management</strong>
+                </div>
+
+            </div>
+
+            <div class="topbar-right">
+
+                <div class="system-status">
+                    <span class="status-dot"></span>
+                    System Connected
+                </div>
+
+                <button class="icon-button" aria-label="Notifications">
+                    <i data-lucide="bell"></i>
+                </button>
+
+                <div class="topbar-user">
+                    <div class="avatar" id="topbarAvatar">U</div>
+
+                    <div>
+                        <strong id="topbarUserName">Loading user...</strong>
+                        <span id="topbarUserRole">Loading role...</span>
+                    </div>
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <section class="dashboard-content">
+
+            <div class="welcome-section">
+
+                <div>
+                    <p class="date-label" id="usersDate"></p>
+
+                    <h1>Employee Management</h1>
+
+                    <p>
+                        Manage company employees, organisational roles,
+                        employee information and account access.
+                    </p>
+                </div>
+
+                <button type="button"
+                        class="primary-button"
+                        id="addUserButton">
+
+                    <i data-lucide="user-plus"></i>
+                    Invite Employee
+
+                </button>
+
+            </div>
+
+
+            <section class="stats-grid">
+
+                <article class="stat-card">
+
+                    <div class="stat-top">
+                        <span>Total Users</span>
+
+                        <div class="stat-icon blue">
+                            <i data-lucide="users"></i>
+                        </div>
+                    </div>
+
+                    <h2 id="totalUsers">0</h2>
+
+                    <p class="stat-description">
+                        Registered company accounts
+                    </p>
+
+                </article>
+
+
+                <article class="stat-card">
+
+                    <div class="stat-top">
+                        <span>Active Employees</span>
+
+                        <div class="stat-icon green">
+                            <i data-lucide="user-check"></i>
+                        </div>
+                    </div>
+
+                    <h2 id="totalEmployees">0</h2>
+
+                    <p class="stat-description">
+                        Active employee accounts
+                    </p>
+
+                </article>
+
+
+                <article class="stat-card">
+
+                    <div class="stat-top">
+                        <span>Technicians</span>
+
+                        <div class="stat-icon purple">
+                            <i data-lucide="headset"></i>
+                        </div>
+                    </div>
+
+                    <h2 id="totalTechnicians">0</h2>
+
+                    <p class="stat-description">
+                        Active IT technicians
+                    </p>
+
+                </article>
+
+
+                <article class="stat-card">
+
+                    <div class="stat-top">
+                        <span>Inactive Accounts</span>
+
+                        <div class="stat-icon orange">
+                            <i data-lucide="user-minus"></i>
+                        </div>
+                    </div>
+
+                    <h2 id="totalInactiveUsers">0</h2>
+
+                    <p class="stat-description">
+                        Suspended and disabled accounts
+                    </p>
+
+                </article>
+
+            </section>
+
+
+            <section class="content-panel user-management-panel">
+
+                <div class="panel-header">
+
+                    <div>
+                        <h2>Company Employee Directory</h2>
+                        <p>
+                            View employees and manage their organisational
+                            information and system access.
+                        </p>
+                    </div>
+
+                    <span class="ticket-record-count" id="usersRecordCount">
+                        0 users
+                    </span>
+
+                </div>
+
+
+                <div class="user-toolbar">
+
+                    <div class="ticket-search">
+
+                        <i data-lucide="search"></i>
+
+                        <input
+                            type="search"
+                            id="userSearch"
+                            placeholder="Search name, email or employee number..."
+                            aria-label="Search employees"
+                        >
+
+                    </div>
+
+
+                    <select id="roleFilter" aria-label="Filter by role">
+
+                        <option value="All">All Roles</option>
+                        <option value="owner">Owner</option>
+                        <option value="administrator">Administrator</option>
+                        <option value="it_manager">IT Manager</option>
+                        <option value="technician">IT Technician</option>
+                        <option value="employee">Employee</option>
+                        <option value="auditor">Internal Auditor</option>
+
+                    </select>
+
+
+                    <select id="departmentFilter"
+                            aria-label="Filter by department">
+
+                        <option value="All">All Departments</option>
+                        <option value="Executive Management">Executive Management</option>
+                        <option value="Information Technology">Information Technology</option>
+                        <option value="Finance">Finance</option>
+                        <option value="Human Resources">Human Resources</option>
+                        <option value="Operations">Operations</option>
+                        <option value="Administration">Administration</option>
+                        <option value="Marketing">Marketing</option>
+                        <option value="Sales">Sales</option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="ticket-filters user-filters">
+
+                    <button class="filter-button active"
+                            data-user-filter="All"
+                            aria-pressed="true">
+                        All Users
+                        <span id="allUsersCount">0</span>
+                    </button>
+
+                    <button class="filter-button"
+                            data-user-filter="pending"
+                            aria-pressed="false">
+                        Pending
+                        <span id="pendingUsersCount">0</span>
+                    </button>
+
+                    <button class="filter-button"
+                            data-user-filter="active"
+                            aria-pressed="false">
+                        Active
+                        <span id="activeUsersCount">0</span>
+                    </button>
+
+                    <button class="filter-button"
+                            data-user-filter="suspended"
+                            aria-pressed="false">
+                        Suspended
+                        <span id="suspendedUsersCount">0</span>
+                    </button>
+
+                    <button class="filter-button"
+                            data-user-filter="disabled"
+                            aria-pressed="false">
+                        Disabled
+                        <span id="disabledUsersCount">0</span>
+                    </button>
+
+                </div>
+
+
+                <div class="table-wrapper" id="usersTableWrapper">
+
+                    <table class="user-table">
+
+                        <thead>
+
+                            <tr>
+                                <th>Employee Number</th>
+                                <th>Employee Information</th>
+                                <th>Department</th>
+                                <th>Role</th>
+                                <th>Account Status</th>
+                                <th>Date Added</th>
+                                <th>Actions</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="usersTableBody">
+                            <!-- Employee records loaded from the backend -->
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+                <div class="empty-state" id="usersEmptyState">
+
+                    <div class="empty-icon">
+                        <i data-lucide="users"></i>
+                    </div>
+
+                    <h3>No employees found</h3>
+
+                    <p id="usersEmptyMessage">
+                        There are currently no employee records matching your search.
+                    </p>
+
+                    <button type="button"
+                            class="primary-button"
+                            id="emptyAddUserButton">
+
+                        <i data-lucide="user-plus"></i>
+                        Invite First Employee
+
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <section class="content-panel">
+
+                <div class="panel-header">
+                    <div>
+                        <h2>Organisational Roles & Responsibilities</h2>
+                        <p>
+                            Sam Enterprise's six-level organisational
+                            access structure.
+                        </p>
+                    </div>
+                </div>
+
+
+                <div class="role-information-grid">
+
+                    <div class="role-information-card">
+
+                        <div class="role-information-icon blue">
+                            <i data-lucide="crown"></i>
+                        </div>
+
+                        <h3>Owner</h3>
+
+                        <p>
+                            The highest authority in Sam Enterprise.
+                            Controls company administration, organisational
+                            roles and critical system permissions.
+                        </p>
+
+                    </div>
+
+
+                    <div class="role-information-card">
+
+                        <div class="role-information-icon green">
+                            <i data-lucide="shield-check"></i>
+                        </div>
+
+                        <h3>Administrator</h3>
+
+                        <p>
+                            Manages authorised user accounts, employee
+                            administration and approved system operations.
+                            Cannot assign or remove the Owner role.
+                        </p>
+
+                    </div>
+
+
+                    <div class="role-information-card">
+
+                        <div class="role-information-icon purple">
+                            <i data-lucide="briefcase-business"></i>
+                        </div>
+
+                        <h3>IT Manager</h3>
+
+                        <p>
+                            Oversees IT operations, employee information
+                            and technical service management.
+                        </p>
+
+                    </div>
+
+
+                    <div class="role-information-card">
+
+                        <div class="role-information-icon purple">
+                            <i data-lucide="headset"></i>
+                        </div>
+
+                        <h3>IT Technician</h3>
+
+                        <p>
+                            Investigates technical issues, handles assigned
+                            support tickets and assists employees.
+                        </p>
+
+                    </div>
+
+
+                    <div class="role-information-card">
+
+                        <div class="role-information-icon blue">
+                            <i data-lucide="user"></i>
+                        </div>
+
+                        <h3>Employee</h3>
+
+                        <p>
+                            Uses company IT services, reports incidents,
+                            submits support requests and accesses
+                            authorised self-service resources.
+                        </p>
+
+                    </div>
+
+
+                    <div class="role-information-card">
+
+                        <div class="role-information-icon orange">
+                            <i data-lucide="clipboard-check"></i>
+                        </div>
+
+                        <h3>Internal Auditor</h3>
+
+                        <p>
+                            Has read-only access to authorised employee
+                            and organisational records for independent
+                            review and auditing.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <div class="user-security-notice">
+
+                <i data-lucide="lock"></i>
+
+                <p>
+                    <strong>Security notice:</strong>
+                    Employee information, role assignments and account
+                    statuses are managed through the Sam Enterprise backend.
+                    Server-side authentication and permission checks determine
+                    which actions each user is allowed to perform.
+                    Only the Owner can assign or remove the Owner role.
+                </p>
+
+            </div>
+
+
+            <footer class="footer">
+
+                <span>Â© 2026 Sam Enterprise. All rights reserved.</span>
+
+                <span>Employee Administration Â· Version 1.0</span>
+
+            </footer>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<div class="modal-overlay" id="userModal">
+
+    <div class="user-modal">
+
+        <div class="details-header">
+
+            <div>
+                <span class="date-label">EMPLOYEE DIRECTORY</span>
+                <h2 id="userModalTitle">Invite New Employee</h2>
+            </div>
+
+            <button type="button"
+                    class="modal-close"
+                    id="closeUserModal"
+                    aria-label="Close employee form">
+
+                <i data-lucide="x"></i>
+
+            </button>
+
+        </div>
+
+
+        <form id="userForm">
+
+            <input type="hidden" id="userId">
+
+
+            <div class="user-form-section">
+
+                <h3>
+                    <i data-lucide="user"></i>
+                    Personal Information
+                </h3>
+
+
+                <div class="management-form-grid">
+
+                    <div class="form-group">
+
+                        <label for="userFirstName">First Name *</label>
+
+                        <input
+                            type="text"
+                            id="userFirstName"
+                            maxlength="60"
+                            placeholder="Enter first name"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="userLastName">Last Name *</label>
+
+                        <input
+                            type="text"
+                            id="userLastName"
+                            maxlength="60"
+                            placeholder="Enter last name"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group management-full-width">
+
+                        <label for="userEmail">Company Email *</label>
+
+                        <input
+                            type="email"
+                            id="userEmail"
+                            maxlength="120"
+                            placeholder="name@company.co.za"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group management-full-width">
+
+                        <label for="employeeNumber">Employee Number</label>
+
+                        <input
+                            type="text"
+                            id="employeeNumber"
+                            maxlength="30"
+                            placeholder="Optional employee number"
+                        >
+
+                        <small class="settings-helper">
+                            Employee numbers are optional in the current database.
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="user-form-section">
+
+                <h3>
+                    <i data-lucide="building-2"></i>
+                    Organisational Information
+                </h3>
+
+
+                <div class="management-form-grid">
+
+                    <div class="form-group">
+
+                        <label for="userDepartment">Department</label>
+
+                        <select id="userDepartment">
+
+                            <option value="">Select department</option>
+                            <option value="Executive Management">Executive Management</option>
+                            <option value="Information Technology">Information Technology</option>
+                            <option value="Finance">Finance</option>
+                            <option value="Human Resources">Human Resources</option>
+                            <option value="Operations">Operations</option>
+                            <option value="Administration">Administration</option>
+                            <option value="Marketing">Marketing</option>
+                            <option value="Sales">Sales</option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="userJobTitle">Job Title</label>
+
+                        <input
+                            type="text"
+                            id="userJobTitle"
+                            maxlength="100"
+                            placeholder="Enter job title"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group management-full-width">
+
+                        <label for="userRole">System Role *</label>
+
+                        <select id="userRole" required>
+
+                            <option value="employee">Employee</option>
+                            <option value="technician">IT Technician</option>
+                            <option value="it_manager">IT Manager</option>
+                            <option value="administrator">Administrator</option>
+                            <option value="auditor">Internal Auditor</option>
+
+                        </select>
+
+                        <small class="settings-helper">
+                            Owner accounts cannot be created through employee invitations.
+                        </small>
+
+                    </div>
+
+
+                    <div class="form-group management-full-width"
+                         id="userStatusGroup">
+
+                        <label for="userStatus">Account Status</label>
+
+                        <select id="userStatus">
+
+                            <option value="active">Active</option>
+                            <option value="suspended">Suspended</option>
+                            <option value="disabled">Disabled</option>
+
+                        </select>
+
+                        <small class="settings-helper">
+                            Account status is managed separately from invitations.
+                            New invitations automatically create pending accounts.
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="user-invitation-notice">
+
+                <i data-lucide="mail"></i>
+
+                <p>
+                    <strong>Employee invitation:</strong>
+                    New employees receive a secure invitation link and
+                    create their own password. Invitations currently return
+                    a link from the backend; automatic email delivery has
+                    not yet been configured.
+                </p>
+
+            </div>
+
+
+            <div id="userFormMessage"
+                 role="status"
+                 aria-live="polite">
+            </div>
+
+
+            <div class="form-actions">
+
+                <button type="button"
+                        class="secondary-button"
+                        id="cancelUserForm">
+
+                    Cancel
+
+                </button>
+
+
+                <button type="submit"
+                        class="primary-button"
+                        id="saveUserButton">
+
+                    <i data-lucide="user-plus"></i>
+                    Send Invitation
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<script src="../js/demo-engine.js"></script>
+<script src="../js/app.js"></script>
+<script src="../js/user-store.js"></script>
+<script src="../js/users.js"></script>
+
+</body>
+</html>
+

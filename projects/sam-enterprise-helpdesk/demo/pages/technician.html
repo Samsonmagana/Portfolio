@@ -1,0 +1,686 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Technician Workspace | Sam Enterprise</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+
+<div class="app-container">
+
+    <!-- TECHNICIAN SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+
+        <div class="brand">
+            <div class="brand-icon">S</div>
+            <div>
+                <h2>SAM ENTERPRISE</h2>
+                <span>IT SERVICE MANAGEMENT</span>
+            </div>
+        </div>
+
+        <div class="sidebar-label">TECHNICIAN WORKSPACE</div>
+
+        <nav class="navigation">
+
+            <a href="technician.html" class="nav-link active">
+                <i data-lucide="layout-dashboard"></i>
+                <span>Overview</span>
+            </a>
+
+            <a href="../index.html" class="nav-link">
+                <i data-lucide="home"></i>
+                <span>Main Dashboard</span>
+            </a>
+
+            <a href="tickets.html" class="nav-link">
+                <i data-lucide="ticket"></i>
+                <span>Employee Ticket View</span>
+            </a>
+
+            <a href="knowledge-base.html" class="nav-link">
+                <i data-lucide="book-open"></i>
+                <span>Knowledge Base</span>
+            </a>
+
+            <div class="sidebar-label">SUPPORT OPERATIONS</div>
+
+            <a href="#ticketQueue" class="nav-link">
+                <i data-lucide="inbox"></i>
+                <span>Ticket Queue</span>
+            </a>
+
+            <a href="#ticketQueue" class="nav-link">
+                <i data-lucide="user-check"></i>
+                <span>Assigned Tickets</span>
+            </a>
+
+            <a href="#ticketQueue" class="nav-link">
+                <i data-lucide="alert-circle"></i>
+                <span>Unassigned Tickets</span>
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <div class="support-card">
+                <i data-lucide="shield-check"></i>
+                <h4>Technician Workspace</h4>
+                <p>Manage incidents, support employees and monitor service performance.</p>
+            </div>
+
+            <div class="user-profile">
+
+                <div class="avatar">AM</div>
+
+                <div class="user-info">
+                    <strong>Alex Morgan</strong>
+                    <span>IT Technician (Demo)</span>
+                </div>
+
+                <i data-lucide="chevron-down"></i>
+
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- TOPBAR -->
+        <header class="topbar">
+
+            <div class="topbar-left">
+
+                <button class="menu-toggle" id="menuToggle"
+                        aria-label="Toggle navigation">
+                    <i data-lucide="menu"></i>
+                </button>
+
+                <div>
+                    <span class="breadcrumb">IT Operations /</span>
+                    <strong>Technician Workspace</strong>
+                </div>
+
+            </div>
+
+            <div class="topbar-right">
+
+                <div class="system-status">
+                    <span class="status-dot"></span>
+                    Support Workspace Active
+                </div>
+
+                <button class="icon-button" aria-label="Notifications">
+                    <i data-lucide="bell"></i>
+                    <span class="notification-dot"></span>
+                </button>
+
+                <div class="topbar-user">
+                    <div class="avatar">AM</div>
+                    <div>
+                        <strong>Alex Morgan</strong>
+                        <span>IT Technician</span>
+                    </div>
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- DASHBOARD CONTENT -->
+        <section class="dashboard-content">
+
+
+            <!-- WELCOME SECTION -->
+            <div class="welcome-section">
+
+                <div>
+                    <p class="date-label" id="technicianDate"></p>
+
+                    <h1>Technician Workspace</h1>
+
+                    <p>
+                        Monitor incidents, manage support requests and keep employees productive.
+                    </p>
+                </div>
+
+                <button class="primary-button" id="refreshTickets">
+                    <i data-lucide="refresh-cw"></i>
+                    Refresh Queue
+                </button>
+
+            </div>
+
+
+            <!-- STATISTICS -->
+            <section class="stats-grid">
+
+                <article class="stat-card">
+
+                    <div class="stat-top">
+                        <span>Total Tickets</span>
+
+                        <div class="stat-icon blue">
+                            <i data-lucide="ticket"></i>
+                        </div>
+                    </div>
+
+                    <h2 id="techTotalTickets">0</h2>
+
+                    <p class="stat-description">
+                        All reported incidents
+                    </p>
+
+                </article>
+
+
+                <article class="stat-card">
+
+                    <div class="stat-top">
+                        <span>Unassigned</span>
+
+                        <div class="stat-icon orange">
+                            <i data-lucide="user-minus"></i>
+                        </div>
+                    </div>
+
+                    <h2 id="techUnassigned">0</h2>
+
+                    <p class="stat-description">
+                        Awaiting technician assignment
+                    </p>
+
+                </article>
+
+
+                <article class="stat-card">
+
+                    <div class="stat-top">
+                        <span>In Progress</span>
+
+                        <div class="stat-icon purple">
+                            <i data-lucide="refresh-cw"></i>
+                        </div>
+                    </div>
+
+                    <h2 id="techInProgress">0</h2>
+
+                    <p class="stat-description">
+                        Currently being investigated
+                    </p>
+
+                </article>
+
+
+                <article class="stat-card">
+
+                    <div class="stat-top">
+                        <span>Resolved</span>
+
+                        <div class="stat-icon green">
+                            <i data-lucide="check-circle"></i>
+                        </div>
+                    </div>
+
+                    <h2 id="techResolved">0</h2>
+
+                    <p class="stat-description">
+                        Successfully completed
+                    </p>
+
+                </article>
+
+            </section>
+
+
+            <!-- PRIORITY ALERT -->
+            <div class="technician-alert" id="criticalAlert">
+
+                <div class="alert-icon">
+                    <i data-lucide="alert-triangle"></i>
+                </div>
+
+                <div>
+                    <strong>Critical incidents require attention</strong>
+                    <p id="criticalAlertText">
+                        There are currently no critical incidents.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <!-- TICKET MANAGEMENT -->
+            <section class="content-panel technician-queue" id="ticketQueue">
+
+                <div class="panel-header">
+
+                    <div>
+                        <h2>IT Support Ticket Queue</h2>
+                        <p>Review, assign and manage employee support requests.</p>
+                    </div>
+
+                    <span class="ticket-record-count" id="techRecordCount">
+                        0 tickets
+                    </span>
+
+                </div>
+
+
+                <!-- SEARCH -->
+                <div class="ticket-toolbar">
+
+                    <div class="ticket-search">
+
+                        <i data-lucide="search"></i>
+
+                        <input
+                            type="search"
+                            id="techSearch"
+                            placeholder="Search ticket, employee or department..."
+                            aria-label="Search support tickets"
+                        >
+
+                    </div>
+
+                    <button type="button" class="clear-search" id="techClearSearch">
+                        Clear search
+                    </button>
+
+                </div>
+
+
+                <!-- STATUS FILTERS -->
+                <div class="ticket-filters">
+
+                    <button class="filter-button active"
+                            data-tech-filter="All" aria-pressed="true">
+
+                        All Tickets
+                        <span id="techAllCount">0</span>
+
+                    </button>
+
+                    <button class="filter-button"
+                            data-tech-filter="Open" aria-pressed="false">
+
+                        Open
+                        <span id="techOpenCount">0</span>
+
+                    </button>
+
+                    <button class="filter-button"
+                            data-tech-filter="In Progress" aria-pressed="false">
+
+                        In Progress
+                        <span id="techProgressCount">0</span>
+
+                    </button>
+
+                    <button class="filter-button"
+                            data-tech-filter="Pending" aria-pressed="false">
+
+                        Pending
+                        <span id="techPendingCount">0</span>
+
+                    </button>
+
+                    <button class="filter-button"
+                            data-tech-filter="Resolved" aria-pressed="false">
+
+                        Resolved
+                        <span id="techResolvedCount">0</span>
+
+                    </button>
+
+                </div>
+
+
+                <!-- TICKET TABLE -->
+                <div class="table-wrapper" id="technicianTableWrapper">
+
+                    <table class="my-tickets-table">
+
+                        <thead>
+
+                            <tr>
+                                <th>Ticket ID</th>
+                                <th>Employee / Issue</th>
+                                <th>Department</th>
+                                <th>Priority</th>
+                                <th>Status</th>
+                                <th>Technician</th>
+                                <th>Action</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="technicianTicketTable">
+
+                            <!-- JavaScript generates ticket records -->
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+                <!-- EMPTY STATE -->
+                <div class="empty-state" id="technicianEmptyState">
+
+                    <div class="empty-icon">
+                        <i data-lucide="inbox"></i>
+                    </div>
+
+                    <h3>No support tickets found</h3>
+
+                    <p id="technicianEmptyMessage">
+                        There are currently no employee support requests.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- SUPPORT GUIDELINES -->
+            <section class="bottom-grid">
+
+                <div class="content-panel">
+
+                    <div class="panel-header">
+                        <div>
+                            <h2>Technician Guidelines</h2>
+                            <p>Recommended incident management process.</p>
+                        </div>
+                    </div>
+
+                    <div class="technician-guideline">
+
+                        <span class="guideline-number">01</span>
+
+                        <div>
+                            <strong>Review the incident</strong>
+                            <p>Understand the employee's problem and identify its impact.</p>
+                        </div>
+
+                    </div>
+
+                    <div class="technician-guideline">
+
+                        <span class="guideline-number">02</span>
+
+                        <div>
+                            <strong>Assign responsibility</strong>
+                            <p>Ensure every active ticket has an accountable technician.</p>
+                        </div>
+
+                    </div>
+
+                    <div class="technician-guideline">
+
+                        <span class="guideline-number">03</span>
+
+                        <div>
+                            <strong>Document troubleshooting</strong>
+                            <p>Record investigation steps and relevant findings.</p>
+                        </div>
+
+                    </div>
+
+                    <div class="technician-guideline">
+
+                        <span class="guideline-number">04</span>
+
+                        <div>
+                            <strong>Resolve and verify</strong>
+                            <p>Confirm the reported issue has been addressed before resolution.</p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="content-panel">
+
+                    <div class="panel-header">
+                        <div>
+                            <h2>Priority Management</h2>
+                            <p>Understand incident urgency.</p>
+                        </div>
+                    </div>
+
+                    <div class="technician-priority">
+
+                        <span class="priority critical">Critical</span>
+
+                        <p>Major business disruption or serious security incident.</p>
+
+                    </div>
+
+                    <div class="technician-priority">
+
+                        <span class="priority high">High</span>
+
+                        <p>Important business services significantly affected.</p>
+
+                    </div>
+
+                    <div class="technician-priority">
+
+                        <span class="priority medium">Medium</span>
+
+                        <p>Individual work affected, but alternatives may exist.</p>
+
+                    </div>
+
+                    <div class="technician-priority">
+
+                        <span class="priority low">Low</span>
+
+                        <p>Minor inconvenience or general assistance request.</p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <footer class="footer">
+
+                <span>Â© 2026 Sam Enterprise. All rights reserved.</span>
+
+                <span>IT Technician Workspace</span>
+
+            </footer>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- MANAGE TICKET MODAL -->
+<div class="modal-overlay" id="manageTicketModal">
+
+    <div class="ticket-details-modal manage-ticket-modal">
+
+        <div class="details-header">
+
+            <div>
+                <span class="date-label">INCIDENT MANAGEMENT</span>
+                <h2 id="manageTicketTitle">Manage Ticket</h2>
+            </div>
+
+            <button class="modal-close" id="closeManageModal"
+                    type="button" aria-label="Close">
+                <i data-lucide="x"></i>
+            </button>
+
+        </div>
+
+
+        <!-- EMPLOYEE ISSUE SUMMARY -->
+        <div class="management-summary" id="managementSummary">
+
+            <!-- JavaScript fills this section -->
+
+        </div>
+
+
+        <!-- UPDATE FORM -->
+        <form id="manageTicketForm">
+
+            <input type="hidden" id="editingTicketId">
+
+            <div class="management-form-grid">
+
+                <div class="form-group">
+
+                    <label for="technicianAssignment">
+                        Assign Technician *
+                    </label>
+
+                    <select id="technicianAssignment" required>
+
+                        <option value="">Select technician</option>
+
+                        <option value="Alex Morgan">Alex Morgan</option>
+
+                        <option value="David Brown">David Brown</option>
+
+                        <option value="Peter Wilson">Peter Wilson</option>
+
+                        <option value="Sarah Chen">Sarah Chen</option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="technicianPriority">
+                        Ticket Priority *
+                    </label>
+
+                    <select id="technicianPriority" required>
+
+                        <option value="Low">Low</option>
+                        <option value="Medium">Medium</option>
+                        <option value="High">High</option>
+                        <option value="Critical">Critical</option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group management-full-width">
+
+                    <label for="technicianStatus">
+                        Update Ticket Status *
+                    </label>
+
+                    <select id="technicianStatus" required>
+
+                        <option value="Open">Open</option>
+
+                        <option value="In Progress">In Progress</option>
+
+                        <option value="Pending">Pending</option>
+
+                        <option value="Resolved">Resolved</option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="technicianNotes">
+                    Troubleshooting Notes
+                </label>
+
+                <textarea
+                    id="technicianNotes"
+                    rows="4"
+                    maxlength="2000"
+                    placeholder="Record your investigation, troubleshooting steps or resolution..."
+                ></textarea>
+
+                <small class="field-hint">
+                    Notes will be recorded with the technician's name and date.
+                </small>
+
+            </div>
+
+
+            <div class="ticket-history">
+
+                <h3>
+                    <i data-lucide="history"></i>
+                    Ticket Activity History
+                </h3>
+
+                <div id="ticketActivityHistory">
+
+                    <!-- JavaScript fills activity history -->
+
+                </div>
+
+            </div>
+
+
+            <div class="form-actions">
+
+                <button type="button" class="secondary-button"
+                        id="cancelManageTicket">
+                    Cancel
+                </button>
+
+                <button type="submit" class="primary-button">
+                    <i data-lucide="save"></i>
+                    Save Ticket Updates
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<script src="../js/demo-engine.js"></script>
+<script src="../js/app.js"></script>
+<script src="../js/technician.js"></script>
+
+</body>
+
+</html>
+

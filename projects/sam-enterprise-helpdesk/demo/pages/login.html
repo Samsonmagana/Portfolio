@@ -1,0 +1,139 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sign in to the Sam Enterprise IT Helpdesk.">
+    <title>Sign In | Sam Enterprise</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/login.css">
+</head>
+<body class="login-page">
+
+    <main class="login-layout">
+        <section class="login-brand-panel">
+            <div class="login-brand-content">
+                <div class="login-logo">
+                    <span class="login-logo-icon">S</span>
+                    <span>Sam Enterprise</span>
+                </div>
+
+                <div class="login-welcome">
+                    <span class="login-eyebrow">IT SERVICE MANAGEMENT</span>
+                    <h1>Technology support, made simpler.</h1>
+                    <p>
+                        A central place to report IT issues, track support
+                        requests and keep your organisation connected.
+                    </p>
+                </div>
+
+                <div class="login-feature-list">
+                    <div class="login-feature">
+                        <span class="feature-check">âœ“</span>
+                        <span>Submit and track IT support tickets</span>
+                    </div>
+                    <div class="login-feature">
+                        <span class="feature-check">âœ“</span>
+                        <span>Connect with the IT support team</span>
+                    </div>
+                    <div class="login-feature">
+                        <span class="feature-check">âœ“</span>
+                        <span>Access support resources and updates</span>
+                    </div>
+                </div>
+            </div>
+
+            <p class="login-brand-footer">
+                Â© <span id="currentYear"></span> Sam Enterprise. All rights reserved.
+            </p>
+        </section>
+
+        <section class="login-form-panel">
+            <div class="login-form-container">
+                <div class="login-mobile-logo">
+                    <span class="login-logo-icon">S</span>
+                    <span>Sam Enterprise</span>
+                </div>
+
+                <div class="login-heading">
+                    <span class="login-eyebrow">WELCOME BACK</span>
+                    <h2>Sign in to your account</h2>
+                    <p>Enter your company credentials to continue.</p>
+                </div>
+
+                <form id="loginForm" novalidate>
+                    <div class="login-field">
+                        <label for="email">Work email address</label>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="name@company.com"
+                            autocomplete="username"
+                            required
+                        >
+                        <small class="field-error" id="emailError"></small>
+                    </div>
+
+                    <div class="login-field">
+                        <label for="password">Password</label>
+
+                        <div class="password-input-wrapper">
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                placeholder="Enter your password"
+                                autocomplete="current-password"
+                                required
+                            >
+
+                            <button
+                                type="button"
+                                class="password-toggle"
+                                id="togglePassword"
+                                aria-label="Show password"
+                            >
+                                Show
+                            </button>
+                        </div>
+
+                        <small class="field-error" id="passwordError"></small>
+                    </div>
+
+                    <div class="login-options">
+                        <label class="remember-option">
+                            <input type="checkbox" id="rememberMe">
+                            <span>Remember me</span>
+                        </label>
+
+                        <a href="#" id="forgotPassword">Forgot password?</a>
+                    </div>
+
+                    <button type="submit" class="login-submit-button" id="loginButton">
+                        Sign In
+                        <span aria-hidden="true">â†’</span>
+                    </button>
+
+                    <div class="login-message" id="loginMessage" role="status" aria-live="polite"></div>
+                </form>
+
+                <div class="login-security-note">
+                    <span aria-hidden="true">ðŸ”’</span>
+                    <p>Your account access is intended for authorised Sam Enterprise users.</p>
+                </div>
+
+                <p class="login-help">
+                    Need access? Contact your system administrator.
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <script src="../js/demo-engine.js"></script>
+<script src="../js/login.js"></script>
+</body>
+</html>
+

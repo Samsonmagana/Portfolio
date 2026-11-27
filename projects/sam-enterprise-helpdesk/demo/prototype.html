@@ -1,0 +1,300 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sam Enterprise | IT Helpdesk Demo</title>
+<style>
+:root {
+    --navy:#10243a;
+    --blue:#1769aa;
+    --light:#f3f6fa;
+    --border:#e3e9f0;
+    --text:#243447;
+    --muted:#718096;
+    --green:#16865b;
+    --orange:#c77b16;
+    --red:#c34242;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:var(--light);color:var(--text)}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+.login-screen{min-height:100vh;display:grid;place-items:center;padding:20px}
+.login-card{background:white;padding:38px;border-radius:14px;width:min(420px,100%);box-shadow:0 12px 40px #10243a18}
+.brand{font-size:25px;font-weight:800;color:var(--navy)}
+.brand span{color:var(--blue)}
+.login-card p{color:var(--muted);line-height:1.6}
+.primary{background:var(--blue);color:white;border:0;border-radius:7px;padding:11px 16px;font-weight:700}
+.primary:hover{background:#10578f}
+.demo-label{display:inline-block;background:#fff2d8;color:#94600d;padding:6px 10px;border-radius:20px;font-size:12px;font-weight:700;margin:14px 0}
+.app{display:none;min-height:100vh}
+.sidebar{position:fixed;inset:0 auto 0 0;width:245px;background:var(--navy);color:white;padding:25px 16px;display:flex;flex-direction:column}
+.sidebar .brand{color:white;margin:0 10px 8px}
+.sidebar small{color:#a9bacb;margin:0 10px 28px}
+.nav button{width:100%;padding:13px 14px;text-align:left;border:0;border-radius:7px;color:#c8d4e0;background:transparent;margin:3px 0}
+.nav button:hover,.nav button.active{background:#ffffff1b;color:white}
+.sidebar-footer{margin-top:auto;color:#a9bacb;font-size:12px;padding:12px}
+.main{margin-left:245px;min-height:100vh}
+.topbar{background:white;border-bottom:1px solid var(--border);padding:17px 28px;display:flex;justify-content:space-between;align-items:center;gap:15px}
+.topbar strong{font-size:16px}
+.user-pill{font-size:13px;background:#edf4fb;padding:9px 12px;border-radius:20px}
+.content{padding:28px;max-width:1400px;margin:auto}
+.notice{background:#fff7e6;border:1px solid #f1dfb9;color:#785515;padding:12px 15px;border-radius:8px;font-size:13px;margin-bottom:22px}
+.page-heading{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:22px}
+h1{font-size:25px;margin:0 0 6px}
+.subtitle{color:var(--muted);font-size:14px}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-bottom:22px}
+.stat,.panel{background:white;border:1px solid var(--border);border-radius:10px;padding:19px}
+.stat small{color:var(--muted)}
+.stat h2{font-size:29px;margin:12px 0 4px}
+.panel{margin-bottom:20px}
+.panel h3{margin:0 0 17px;font-size:16px}
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;min-width:620px}
+th,td{text-align:left;padding:13px 12px;border-bottom:1px solid var(--border);font-size:13px}
+th{color:var(--muted);font-weight:700;background:#fafbfd}
+.status{display:inline-block;padding:5px 9px;border-radius:20px;font-size:11px;font-weight:700;background:#edf1f5;color:#526273}
+.status.Open{background:#fff0e8;color:#b75b22}
+.status.Resolved{background:#e5f6ed;color:#168052}
+.status.In-Progress{background:#e8f1ff;color:#2866a8}
+.status.Closed{background:#edf1f5;color:#526273}
+.actions{display:flex;gap:7px;align-items:center}
+.small-btn{border:1px solid var(--border);background:white;padding:7px 9px;border-radius:6px;font-size:12px}
+.small-btn:hover{background:#f1f6fb}
+input,select,textarea{width:100%;border:1px solid #d6dee8;border-radius:7px;padding:10px;margin:6px 0 14px;background:white}
+label{font-size:13px;font-weight:700}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 15px}
+.empty{color:var(--muted);padding:22px;text-align:center}
+.view{display:none}
+.view.active{display:block}
+.modal{display:none;position:fixed;inset:0;background:#07172799;z-index:5;place-items:center;padding:18px}
+.modal.show{display:grid}
+.modal-card{background:white;width:min(500px,100%);border-radius:12px;padding:24px;max-height:90vh;overflow:auto}
+.modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px}
+.modal-head h3{margin:0}
+.close{border:0;background:#edf1f5;border-radius:50%;width:30px;height:30px}
+.footer-note{font-size:12px;color:var(--muted);margin-top:20px}
+@media(max-width:900px){
+.sidebar{width:190px}.main{margin-left:190px}
+.stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:650px){
+.sidebar{position:static;width:auto;padding:14px}
+.sidebar small,.sidebar-footer{display:none}
+.nav{display:flex;overflow-x:auto;gap:5px}
+.nav button{white-space:nowrap;width:auto;padding:10px}
+.main{margin-left:0}
+.topbar{padding:14px 17px}
+.content{padding:17px}
+.stats{grid-template-columns:1fr 1fr;gap:9px}
+.stat{padding:14px}
+.stat h2{font-size:23px}
+.form-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<section class="login-screen" id="loginScreen">
+    <div class="login-card">
+        <div class="brand">SAM <span>ENTERPRISE</span></div>
+        <div class="demo-label">PUBLIC INTERACTIVE DEMO</div>
+        <h2>IT Helpdesk Portal</h2>
+        <p>Explore a sample enterprise IT support environment. You can view and manage demonstration tickets, employees and IT assets.</p>
+        <button class="primary" style="width:100%" onclick="enterDemo()">Enter Demo Environment →</button>
+        <p class="footer-note">No real account or password is required. This is a simulated environment.</p>
+    </div>
+</section>
+
+<div class="app" id="app">
+    <aside class="sidebar">
+        <div class="brand">SAM <span>ENTERPRISE</span></div>
+        <small>IT SERVICE MANAGEMENT</small>
+        <nav class="nav">
+            <button class="active" data-view="dashboard">▦ &nbsp; Dashboard</button>
+            <button data-view="tickets">▤ &nbsp; Tickets</button>
+            <button data-view="employees">♙ &nbsp; Employees</button>
+            <button data-view="assets">▣ &nbsp; IT Assets</button>
+            <button data-view="reports">▥ &nbsp; Reports</button>
+        </nav>
+        <div class="sidebar-footer">Sam Enterprise IT Helpdesk<br>Frontend demonstration</div>
+    </aside>
+
+    <main class="main">
+        <header class="topbar">
+            <strong id="topTitle">Dashboard</strong>
+            <div class="user-pill">● Demo Administrator</div>
+        </header>
+
+        <div class="content">
+            <div class="notice"><strong>Demo mode:</strong> All records are fictional sample data. Changes are saved in this browser only and are not sent to a real server.</div>
+
+            <section class="view active" id="dashboard">
+                <div class="page-heading">
+                    <div><h1>Dashboard</h1><div class="subtitle">IT support operations overview</div></div>
+                    <button class="primary" onclick="openTicketModal()">+ Create Ticket</button>
+                </div>
+                <div class="stats">
+                    <div class="stat"><small>Total Tickets</small><h2 id="totalTickets">0</h2><small>Recorded requests</small></div>
+                    <div class="stat"><small>Open Tickets</small><h2 id="openTickets">0</h2><small>Awaiting action</small></div>
+                    <div class="stat"><small>Resolved Tickets</small><h2 id="resolvedTickets">0</h2><small>Successfully resolved</small></div>
+                    <div class="stat"><small>IT Assets</small><h2 id="assetCount">0</h2><small>Registered assets</small></div>
+                </div>
+                <div class="panel">
+                    <h3>Recent Support Tickets</h3>
+                    <div class="table-wrap"><table><thead><tr><th>Ticket</th><th>Subject</th><th>Requester</th><th>Priority</th><th>Status</th></tr></thead><tbody id="recentTickets"></tbody></table></div>
+                </div>
+            </section>
+
+            <section class="view" id="tickets">
+                <div class="page-heading">
+                    <div><h1>Ticket Management</h1><div class="subtitle">Create and track IT support requests</div></div>
+                    <button class="primary" onclick="openTicketModal()">+ New Ticket</button>
+                </div>
+                <div class="panel">
+                    <div class="table-wrap"><table><thead><tr><th>Ticket ID</th><th>Subject</th><th>Requester</th><th>Priority</th><th>Status</th><th>Update</th></tr></thead><tbody id="ticketRows"></tbody></table></div>
+                </div>
+            </section>
+
+            <section class="view" id="employees">
+                <div class="page-heading"><div><h1>Employee Directory</h1><div class="subtitle">Sample organisation users</div></div></div>
+                <div class="panel"><div class="table-wrap"><table><thead><tr><th>Name</th><th>Department</th><th>Role</th><th>Email</th></tr></thead><tbody id="employeeRows"></tbody></table></div></div>
+            </section>
+
+            <section class="view" id="assets">
+                <div class="page-heading"><div><h1>IT Asset Management</h1><div class="subtitle">Registered equipment and allocation status</div></div></div>
+                <div class="panel"><div class="table-wrap"><table><thead><tr><th>Asset ID</th><th>Asset</th><th>Category</th><th>Assigned To</th><th>Status</th></tr></thead><tbody id="assetRows"></tbody></table></div></div>
+            </section>
+
+            <section class="view" id="reports">
+                <div class="page-heading"><div><h1>Reports</h1><div class="subtitle">Summary of demonstration support data</div></div></div>
+                <div class="stats">
+                    <div class="stat"><small>Open</small><h2 id="reportOpen">0</h2></div>
+                    <div class="stat"><small>In Progress</small><h2 id="reportProgress">0</h2></div>
+                    <div class="stat"><small>Resolved</small><h2 id="reportResolved">0</h2></div>
+                    <div class="stat"><small>Employees</small><h2 id="reportEmployees">0</h2></div>
+                </div>
+                <div class="panel"><h3>Demo information</h3><p class="subtitle">These figures are calculated from the sample records in this browser. They do not represent real business activity.</p><button class="small-btn" onclick="resetDemo()">Reset sample data</button></div>
+            </section>
+            <div class="footer-note">© 2026 Sam Enterprise IT Helpdesk · Portfolio demonstration</div>
+        </div>
+    </main>
+</div>
+
+<div class="modal" id="ticketModal">
+    <div class="modal-card">
+        <div class="modal-head"><h3>Create Support Ticket</h3><button class="close" onclick="closeTicketModal()">×</button></div>
+        <form id="ticketForm">
+            <label>Ticket subject</label>
+            <input id="subject" required maxlength="100" placeholder="e.g. Laptop cannot connect to Wi-Fi">
+            <div class="form-grid">
+                <div><label>Requester</label><select id="requester"><option>Sam Demo</option><option>Thabo Molefe</option><option>Sarah Dlamini</option><option>John Smith</option></select></div>
+                <div><label>Priority</label><select id="priority"><option>Low</option><option selected>Medium</option><option>High</option><option>Critical</option></select></div>
+            </div>
+            <label>Description</label>
+            <textarea id="description" rows="4" required placeholder="Describe the IT issue..."></textarea>
+            <button class="primary" type="submit">Create Demo Ticket</button>
+        </form>
+    </div>
+</div>
+
+<script>
+const initialTickets = [
+ {id:"TKT-1001",subject:"Unable to access company email",requester:"Thabo Molefe",priority:"High",status:"Open"},
+ {id:"TKT-1002",subject:"Laptop running slowly",requester:"Sarah Dlamini",priority:"Medium",status:"In-Progress"},
+ {id:"TKT-1003",subject:"Printer connection issue",requester:"John Smith",priority:"Low",status:"Resolved"},
+ {id:"TKT-1004",subject:"Request for software installation",requester:"Sam Demo",priority:"Medium",status:"Open"},
+ {id:"TKT-1005",subject:"Network connectivity interruption",requester:"Thabo Molefe",priority:"Critical",status:"In-Progress"}
+];
+const employees = [
+ ["Sam Demo","IT Department","Administrator","sam.demo@example.com"],
+ ["Thabo Molefe","Finance","Employee","thabo@example.com"],
+ ["Sarah Dlamini","Human Resources","Employee","sarah@example.com"],
+ ["John Smith","Operations","Technician","john@example.com"]
+];
+const assets = [
+ ["AST-001","Dell Latitude 5440","Laptop","Sam Demo","Allocated"],
+ ["AST-002","HP ProBook 450","Laptop","Thabo Molefe","Allocated"],
+ ["AST-003","HP LaserJet Pro","Printer","Finance Department","In Service"],
+ ["AST-004","Cisco Network Switch","Networking","IT Department","In Service"],
+ ["AST-005","Dell Monitor 24-inch","Monitor","Sarah Dlamini","Allocated"]
+];
+let tickets;
+try {
+ tickets = JSON.parse(localStorage.getItem("samDemoTickets")) || initialTickets;
+} catch {
+ tickets = initialTickets;
+}
+function save(){localStorage.setItem("samDemoTickets",JSON.stringify(tickets));}
+function enterDemo(){
+ document.getElementById("loginScreen").style.display="none";
+ document.getElementById("app").style.display="block";
+ renderAll();
+}
+document.querySelectorAll(".nav button").forEach(button=>{
+ button.addEventListener("click",()=>{
+  document.querySelectorAll(".nav button").forEach(b=>b.classList.remove("active"));
+  document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));
+  button.classList.add("active");
+  document.getElementById(button.dataset.view).classList.add("active");
+  document.getElementById("topTitle").textContent=button.textContent.trim().replace(/^[^\w]+/,"");
+  renderAll();
+ });
+});
+function statusClass(status){return status.replace(" ","-");}
+function renderAll(){
+ const open=tickets.filter(t=>t.status==="Open").length;
+ const progress=tickets.filter(t=>t.status==="In-Progress").length;
+ const resolved=tickets.filter(t=>t.status==="Resolved").length;
+ document.getElementById("totalTickets").textContent=tickets.length;
+ document.getElementById("openTickets").textContent=open;
+ document.getElementById("resolvedTickets").textContent=resolved;
+ document.getElementById("assetCount").textContent=assets.length;
+ document.getElementById("reportOpen").textContent=open;
+ document.getElementById("reportProgress").textContent=progress;
+ document.getElementById("reportResolved").textContent=resolved;
+ document.getElementById("reportEmployees").textContent=employees.length;
+ const row=t=>`<tr><td>${t.id}</td><td>${escapeHTML(t.subject)}</td><td>${escapeHTML(t.requester)}</td><td>${t.priority}</td><td><span class="status ${statusClass(t.status)}">${t.status}</span></td></tr>`;
+ document.getElementById("recentTickets").innerHTML=tickets.slice(-5).reverse().map(row).join("");
+ document.getElementById("ticketRows").innerHTML=tickets.map(t=>`<tr><td>${t.id}</td><td>${escapeHTML(t.subject)}</td><td>${escapeHTML(t.requester)}</td><td>${t.priority}</td><td><span class="status ${statusClass(t.status)}">${t.status}</span></td><td><select aria-label="Update ${t.id}" onchange="updateStatus('${t.id}',this.value)"><option ${t.status==="Open"?"selected":""}>Open</option><option ${t.status==="In-Progress"?"selected":""}>In-Progress</option><option ${t.status==="Resolved"?"selected":""}>Resolved</option><option ${t.status==="Closed"?"selected":""}>Closed</option></select></td></tr>`).join("");
+ document.getElementById("employeeRows").innerHTML=employees.map(e=>`<tr>${e.map(v=>`<td>${escapeHTML(v)}</td>`).join("")}</tr>`).join("");
+ document.getElementById("assetRows").innerHTML=assets.map(a=>`<tr>${a.map(v=>`<td>${escapeHTML(v)}</td>`).join("")}</tr>`).join("");
+}
+function escapeHTML(value){
+ return String(value).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+}
+function updateStatus(id,status){
+ const ticket=tickets.find(t=>t.id===id);
+ if(ticket){ticket.status=status;save();renderAll();}
+}
+function openTicketModal(){document.getElementById("ticketModal").classList.add("show");}
+function closeTicketModal(){document.getElementById("ticketModal").classList.remove("show");}
+document.getElementById("ticketForm").addEventListener("submit",event=>{
+ event.preventDefault();
+ const nextNumber=Math.max(1000,...tickets.map(t=>Number(t.id.split("-")[1])||1000))+1;
+ tickets.push({
+  id:"TKT-"+nextNumber,
+  subject:document.getElementById("subject").value.trim(),
+  requester:document.getElementById("requester").value,
+  priority:document.getElementById("priority").value,
+  status:"Open",
+  description:document.getElementById("description").value.trim()
+ });
+ save();
+ event.target.reset();
+ closeTicketModal();
+ renderAll();
+ document.querySelector('[data-view="tickets"]').click();
+});
+function resetDemo(){
+ if(confirm("Reset all demo tickets to the original sample data?")){
+  tickets=initialTickets.map(t=>({...t}));
+  save();
+  renderAll();
+ }
+}
+</script>
+</body>
+</html>

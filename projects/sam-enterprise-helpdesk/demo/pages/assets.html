@@ -1,0 +1,1046 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>IT Asset Management | Sam Enterprise</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+
+<div class="app-container">
+
+    <aside class="sidebar" id="sidebar">
+
+        <div class="brand">
+            <div class="brand-icon">S</div>
+            <div>
+                <h2>SAM ENTERPRISE</h2>
+                <span>IT SERVICE MANAGEMENT</span>
+            </div>
+        </div>
+
+        <div class="sidebar-label">IT OPERATIONS</div>
+
+        <nav class="navigation">
+
+            <a href="../index.html" class="nav-link">
+                <i data-lucide="layout-dashboard"></i>
+                <span>Main Dashboard</span>
+            </a>
+
+            <a href="technician.html" class="nav-link">
+                <i data-lucide="headset"></i>
+                <span>Technician Workspace</span>
+            </a>
+
+            <a href="assets.html" class="nav-link active">
+                <i data-lucide="monitor"></i>
+                <span>IT Assets</span>
+            </a>
+
+            <a href="tickets.html" class="nav-link">
+                <i data-lucide="ticket"></i>
+                <span>Employee Tickets</span>
+            </a>
+
+            <a href="knowledge-base.html" class="nav-link">
+                <i data-lucide="book-open"></i>
+                <span>Knowledge Base</span>
+            </a>
+
+        </nav>
+
+        <div class="sidebar-label">MANAGEMENT</div>
+
+        <nav class="navigation">
+
+            <a href="reports.html" class="nav-link">
+                <i data-lucide="chart-no-axes-combined"></i>
+                <span>Reports & Analytics</span>
+            </a>
+
+            <a href="users.html" class="nav-link">
+                <i data-lucide="users"></i>
+                <span>User Management</span>
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <div class="support-card">
+                <i data-lucide="boxes"></i>
+                <h4>Asset Control</h4>
+                <p>Monitor company equipment, assignments and maintenance records.</p>
+            </div>
+
+            <div class="user-profile">
+                <div class="avatar">AM</div>
+
+                <div class="user-info">
+                    <strong>Alex Morgan</strong>
+                    <span>IT Administrator (Demo)</span>
+                </div>
+
+                <i data-lucide="chevron-down"></i>
+            </div>
+
+        </div>
+
+    </aside>
+
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <div class="topbar-left">
+
+                <button class="menu-toggle" id="menuToggle"
+                        aria-label="Toggle navigation">
+                    <i data-lucide="menu"></i>
+                </button>
+
+                <div>
+                    <span class="breadcrumb">IT Operations /</span>
+                    <strong>Asset Management</strong>
+                </div>
+
+            </div>
+
+            <div class="topbar-right">
+
+                <div class="system-status">
+                    <span class="status-dot"></span>
+                    Asset Management Active
+                </div>
+
+                <button class="icon-button" aria-label="Notifications">
+                    <i data-lucide="bell"></i>
+                </button>
+
+                <div class="topbar-user">
+
+                    <div class="avatar">AM</div>
+
+                    <div>
+                        <strong>Alex Morgan</strong>
+                        <span>IT Administrator</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+        <section class="dashboard-content asset-content">
+
+            <div class="welcome-section">
+
+                <div>
+                    <p class="date-label" id="assetDate"></p>
+
+                    <h1>IT Asset Management</h1>
+
+                    <p>
+                        Register, track and manage your organisation's IT equipment.
+                    </p>
+                </div>
+
+                <button type="button" class="primary-button"
+                        id="addAssetButton">
+
+                    <i data-lucide="plus"></i>
+                    Register New Asset
+
+                </button>
+
+            </div>
+
+            <section class="stats-grid">
+
+                <article class="stat-card">
+
+                    <div class="stat-top">
+                        <span>Total Assets</span>
+
+                        <div class="stat-icon blue">
+                            <i data-lucide="boxes"></i>
+                        </div>
+                    </div>
+
+                    <h2 id="totalAssets">0</h2>
+
+                    <p class="stat-description">
+                        Registered company equipment
+                    </p>
+
+                </article>
+
+                <article class="stat-card">
+
+                    <div class="stat-top">
+                        <span>Assigned Assets</span>
+
+                        <div class="stat-icon purple">
+                            <i data-lucide="user-check"></i>
+                        </div>
+                    </div>
+
+                    <h2 id="assignedAssets">0</h2>
+
+                    <p class="stat-description">
+                        Currently issued to employees
+                    </p>
+
+                </article>
+
+                <article class="stat-card">
+
+                    <div class="stat-top">
+                        <span>Available Assets</span>
+
+                        <div class="stat-icon green">
+                            <i data-lucide="package-check"></i>
+                        </div>
+                    </div>
+
+                    <h2 id="availableAssets">0</h2>
+
+                    <p class="stat-description">
+                        Ready for allocation
+                    </p>
+
+                </article>
+
+                <article class="stat-card">
+
+                    <div class="stat-top">
+                        <span>Under Maintenance</span>
+
+                        <div class="stat-icon orange">
+                            <i data-lucide="wrench"></i>
+                        </div>
+                    </div>
+
+                    <h2 id="maintenanceAssets">0</h2>
+
+                    <p class="stat-description">
+                        Equipment requiring attention
+                    </p>
+
+                </article>
+
+            </section>
+
+            <section class="asset-alerts" id="assetAlerts"></section>
+
+            <section class="content-panel asset-inventory-panel">
+
+                <div class="panel-header">
+
+                    <div>
+                        <h2>Company Asset Register</h2>
+                        <p>Manage equipment records and employee assignments.</p>
+                    </div>
+
+                    <span class="ticket-record-count" id="assetRecordCount">
+                        0 assets
+                    </span>
+
+                </div>
+
+                <div class="asset-toolbar">
+
+                    <div class="ticket-search">
+
+                        <i data-lucide="search"></i>
+
+                        <input
+                            type="search"
+                            id="assetSearch"
+                            placeholder="Search asset tag, name or serial number..."
+                            aria-label="Search company assets"
+                        >
+
+                    </div>
+
+                    <select id="assetCategoryFilter"
+                            aria-label="Filter by asset category">
+
+                        <option value="All">All Categories</option>
+                        <option value="Laptop">Laptops</option>
+                        <option value="Desktop">Desktops</option>
+                        <option value="Monitor">Monitors</option>
+                        <option value="Printer">Printers</option>
+                        <option value="Network Equipment">Network Equipment</option>
+                        <option value="Peripheral">Peripherals</option>
+                        <option value="Other">Other</option>
+
+                    </select>
+
+                </div>
+
+                <div class="ticket-filters asset-filters">
+
+                    <button class="filter-button active"
+                            data-asset-filter="All"
+                            aria-pressed="true">
+                        All Assets
+                        <span id="allAssetsCount">0</span>
+                    </button>
+
+                    <button class="filter-button"
+                            data-asset-filter="Assigned"
+                            aria-pressed="false">
+                        Assigned
+                        <span id="assignedFilterCount">0</span>
+                    </button>
+
+                    <button class="filter-button"
+                            data-asset-filter="Available"
+                            aria-pressed="false">
+                        Available
+                        <span id="availableFilterCount">0</span>
+                    </button>
+
+                    <button class="filter-button"
+                            data-asset-filter="Maintenance"
+                            aria-pressed="false">
+                        Maintenance
+                        <span id="maintenanceFilterCount">0</span>
+                    </button>
+
+                    <button class="filter-button"
+                            data-asset-filter="Retired"
+                            aria-pressed="false">
+                        Retired
+                        <span id="retiredFilterCount">0</span>
+                    </button>
+
+                </div>
+
+                <div class="table-wrapper" id="assetTableWrapper">
+
+                    <table class="asset-table">
+
+                        <thead>
+                            <tr>
+                                <th>Asset Tag</th>
+                                <th>Asset Information</th>
+                                <th>Category</th>
+                                <th>Location</th>
+                                <th>Assigned Employee</th>
+                                <th>Condition</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="assetTableBody"></tbody>
+
+                    </table>
+
+                </div>
+
+                <div class="empty-state" id="assetEmptyState">
+
+                    <div class="empty-icon">
+                        <i data-lucide="package-open"></i>
+                    </div>
+
+                    <h3>No assets found</h3>
+
+                    <p id="assetEmptyMessage">
+                        No company equipment has been registered yet.
+                    </p>
+
+                    <button type="button" class="primary-button"
+                            id="emptyAddAssetButton">
+
+                        <i data-lucide="plus"></i>
+                        Register First Asset
+
+                    </button>
+
+                </div>
+
+            </section>
+
+            <section class="content-panel maintenance-overview-panel">
+
+                <div class="panel-header">
+
+                    <div>
+                        <h2>Maintenance & Repairs</h2>
+                        <p>Monitor equipment servicing, repairs and maintenance history.</p>
+                    </div>
+
+                    <div class="maintenance-heading-icon">
+                        <i data-lucide="wrench"></i>
+                    </div>
+
+                </div>
+
+                <div class="maintenance-intro">
+
+                    <div>
+                        <strong>Equipment maintenance records</strong>
+                        <p>
+                            Select an asset from the register to record maintenance,
+                            review previous service records or update a maintenance job.
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="table-wrapper">
+
+                    <table class="asset-table">
+
+                        <thead>
+                            <tr>
+                                <th>Asset Tag</th>
+                                <th>Asset Name</th>
+                                <th>Category</th>
+                                <th>Current Status</th>
+                                <th>Maintenance</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="maintenanceAssetTableBody"></tbody>
+
+                    </table>
+
+                </div>
+
+                <div class="empty-state" id="maintenanceEmptyState">
+                    <div class="empty-icon">
+                        <i data-lucide="wrench"></i>
+                    </div>
+                    <h3>No assets available</h3>
+                    <p>Register company equipment to manage its maintenance records.</p>
+                </div>
+
+            </section>
+
+            <section class="bottom-grid">
+
+                <div class="content-panel">
+
+                    <div class="panel-header">
+                        <div>
+                            <h2>Asset Management Guidelines</h2>
+                            <p>Recommended equipment management practices.</p>
+                        </div>
+                    </div>
+
+                    <div class="technician-guideline">
+                        <span class="guideline-number">01</span>
+                        <div>
+                            <strong>Register every company asset</strong>
+                            <p>Assign a unique asset tag and record its identifying information.</p>
+                        </div>
+                    </div>
+
+                    <div class="technician-guideline">
+                        <span class="guideline-number">02</span>
+                        <div>
+                            <strong>Record equipment allocation</strong>
+                            <p>Keep an accurate record of employees responsible for company devices.</p>
+                        </div>
+                    </div>
+
+                    <div class="technician-guideline">
+                        <span class="guideline-number">03</span>
+                        <div>
+                            <strong>Monitor equipment condition</strong>
+                            <p>Update asset condition when equipment is inspected or returned.</p>
+                        </div>
+                    </div>
+
+                    <div class="technician-guideline">
+                        <span class="guideline-number">04</span>
+                        <div>
+                            <strong>Track warranties and maintenance</strong>
+                            <p>Record warranty dates and monitor equipment requiring service.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="content-panel">
+
+                    <div class="panel-header">
+                        <div>
+                            <h2>Asset Status Guide</h2>
+                            <p>Understand equipment availability.</p>
+                        </div>
+                    </div>
+
+                    <div class="asset-guide-item">
+                        <span class="asset-status available">Available</span>
+                        <p>Equipment is ready to be allocated.</p>
+                    </div>
+
+                    <div class="asset-guide-item">
+                        <span class="asset-status assigned">Assigned</span>
+                        <p>Equipment is currently allocated to an employee.</p>
+                    </div>
+
+                    <div class="asset-guide-item">
+                        <span class="asset-status maintenance">Maintenance</span>
+                        <p>Equipment requires inspection or repair.</p>
+                    </div>
+
+                    <div class="asset-guide-item">
+                        <span class="asset-status retired">Retired</span>
+                        <p>Equipment is no longer in active service.</p>
+                    </div>
+
+                </div>
+
+            </section>
+
+            <footer class="footer">
+                <span>Â© 2026 Sam Enterprise. All rights reserved.</span>
+                <span>IT Asset Management</span>
+            </footer>
+
+        </section>
+
+    </main>
+
+</div>
+
+<!-- Register and Edit Asset Modal -->
+<div class="modal-overlay" id="assetModal">
+
+    <div class="asset-modal">
+
+        <div class="details-header">
+
+            <div>
+                <span class="date-label">IT ASSET REGISTER</span>
+                <h2 id="assetModalTitle">Register New Asset</h2>
+            </div>
+
+            <button type="button" class="modal-close"
+                    id="closeAssetModal"
+                    aria-label="Close asset form">
+                <i data-lucide="x"></i>
+            </button>
+
+        </div>
+
+        <form id="assetForm">
+
+            <input type="hidden" id="assetId">
+
+            <div class="asset-form-section">
+
+                <h3>
+                    <i data-lucide="scan-barcode"></i>
+                    Asset Identification
+                </h3>
+
+                <div class="management-form-grid">
+
+                    <div class="form-group">
+                        <label for="assetTag">Asset Tag *</label>
+                        <input type="text" id="assetTag"
+                               placeholder="SAM-LAP-001"
+                               maxlength="40" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="assetName">Asset Name *</label>
+                        <input type="text" id="assetName"
+                               placeholder="Dell Latitude 5420"
+                               maxlength="100" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="assetCategory">Category *</label>
+                        <select id="assetCategory" required>
+                            <option value="">Select category</option>
+                            <option value="Laptop">Laptop</option>
+                            <option value="Desktop">Desktop</option>
+                            <option value="Monitor">Monitor</option>
+                            <option value="Printer">Printer</option>
+                            <option value="Network Equipment">Network Equipment</option>
+                            <option value="Peripheral">Peripheral</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="assetManufacturer">Manufacturer</label>
+                        <input type="text" id="assetManufacturer"
+                               placeholder="Dell, HP, Lenovo..."
+                               maxlength="60">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="assetModel">Model</label>
+                        <input type="text" id="assetModel"
+                               placeholder="Latitude 5420"
+                               maxlength="80">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="assetSerial">Serial Number *</label>
+                        <input type="text" id="assetSerial"
+                               placeholder="Enter manufacturer's serial number"
+                               maxlength="80" required>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="asset-form-section">
+
+                <h3>
+                    <i data-lucide="user-round-check"></i>
+                    Allocation & Location
+                </h3>
+
+                <div class="management-form-grid">
+
+                    <div class="form-group">
+                        <label for="assetStatus">Asset Status *</label>
+                        <select id="assetStatus" required>
+                            <option value="Available">Available</option>
+                            <option value="Assigned">Assigned</option>
+                            <option value="Maintenance">Maintenance</option>
+                            <option value="Retired">Retired</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="assetEmployee">Assigned Employee</label>
+                        <input type="text" id="assetEmployee"
+                               placeholder="Employee full name"
+                               maxlength="100">
+                    </div>
+
+                    <div class="form-group management-full-width">
+                        <label for="assetLocation">Asset Location *</label>
+                        <input type="text" id="assetLocation"
+                               placeholder="Johannesburg Office"
+                               maxlength="100" required>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="asset-form-section">
+
+                <h3>
+                    <i data-lucide="calendar-days"></i>
+                    Purchase & Equipment Condition
+                </h3>
+
+                <div class="management-form-grid">
+
+                    <div class="form-group">
+                        <label for="assetPurchaseDate">Purchase Date</label>
+                        <input type="date" id="assetPurchaseDate">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="assetWarrantyDate">Warranty Expiry</label>
+                        <input type="date" id="assetWarrantyDate">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="assetCondition">Equipment Condition *</label>
+                        <select id="assetCondition" required>
+                            <option value="New">New</option>
+                            <option value="Good">Good</option>
+                            <option value="Fair">Fair</option>
+                            <option value="Damaged">Damaged</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="assetCost">Purchase Cost (R)</label>
+                        <input type="number" id="assetCost"
+                               min="0" step="0.01"
+                               placeholder="15000.00">
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <label for="assetNotes">Additional Notes</label>
+                    <textarea id="assetNotes" rows="4"
+                              maxlength="1000"
+                              placeholder="Enter additional asset information..."></textarea>
+                </div>
+
+            </div>
+
+            <div class="form-actions">
+
+                <button type="button" class="secondary-button"
+                        id="cancelAssetForm">
+                    Cancel
+                </button>
+
+                <button type="submit" class="primary-button">
+                    <i data-lucide="save"></i>
+                    Save Asset
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<!-- Assign Asset to Employee Modal -->
+<div class="modal-overlay" id="assignmentModal">
+
+    <div class="asset-modal">
+
+        <div class="details-header">
+
+            <div>
+                <span class="date-label">IT ASSET MANAGEMENT</span>
+                <h2>Assign Asset to Employee</h2>
+                <p id="assignmentAssetInfo"></p>
+            </div>
+
+            <button type="button" class="modal-close"
+                    id="closeAssignmentModal"
+                    aria-label="Close allocation form">
+                <i data-lucide="x"></i>
+            </button>
+
+        </div>
+
+        <form id="assignmentForm">
+
+            <div class="asset-form-section">
+
+                <h3>
+                    <i data-lucide="user-round-check"></i>
+                    Employee Allocation
+                </h3>
+
+                <div class="form-group">
+                    <label for="assignmentEmployee">Select Employee *</label>
+                    <select id="assignmentEmployee" required>
+                        <option value="">Loading employees...</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="assignmentNotes">Allocation Notes</label>
+                    <textarea id="assignmentNotes" rows="4"
+                              maxlength="1000"
+                              placeholder="Enter allocation details or handover notes..."></textarea>
+                </div>
+
+            </div>
+
+            <div class="form-actions">
+
+                <button type="button" class="secondary-button"
+                        id="cancelAssignment">
+                    Cancel
+                </button>
+
+                <button type="submit" class="primary-button"
+                        id="confirmAssignment">
+                    <i data-lucide="user-check"></i>
+                    Confirm Assignment
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<!-- Return Asset Modal -->
+<div class="modal-overlay" id="returnAssetModal">
+
+    <div class="asset-modal">
+
+        <div class="details-header">
+
+            <div>
+                <span class="date-label">IT ASSET MANAGEMENT</span>
+                <h2>Return Company Asset</h2>
+                <p id="returnAssetInfo"></p>
+            </div>
+
+            <button type="button" class="modal-close"
+                    id="closeReturnModal"
+                    aria-label="Close return form">
+                <i data-lucide="x"></i>
+            </button>
+
+        </div>
+
+        <form id="returnAssetForm">
+
+            <div class="asset-form-section">
+
+                <h3>
+                    <i data-lucide="package-check"></i>
+                    Equipment Return Details
+                </h3>
+
+                <div class="form-group">
+                    <label for="returnCondition">Returned Equipment Condition</label>
+                    <select id="returnCondition">
+                        <option value="">Keep existing condition</option>
+                        <option value="New">New</option>
+                        <option value="Good">Good</option>
+                        <option value="Fair">Fair</option>
+                        <option value="Damaged">Damaged</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="returnNotes">Return Notes</label>
+                    <textarea id="returnNotes" rows="4"
+                              maxlength="1000"
+                              placeholder="Record damage, missing accessories or other return observations..."></textarea>
+                </div>
+
+            </div>
+
+            <div class="form-actions">
+
+                <button type="button" class="secondary-button"
+                        id="cancelReturn">
+                    Cancel
+                </button>
+
+                <button type="submit" class="primary-button"
+                        id="confirmReturn">
+                    <i data-lucide="package-check"></i>
+                    Confirm Return
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<!-- Maintenance Record Modal -->
+<div class="modal-overlay" id="maintenanceModal">
+
+    <div class="asset-modal">
+
+        <div class="details-header">
+
+            <div>
+                <span class="date-label">IT ASSET MAINTENANCE</span>
+                <h2 id="maintenanceModalTitle">Record Maintenance</h2>
+                <p id="maintenanceAssetInfo"></p>
+            </div>
+
+            <button type="button" class="modal-close"
+                    id="closeMaintenanceModal"
+                    aria-label="Close maintenance form">
+                <i data-lucide="x"></i>
+            </button>
+
+        </div>
+
+        <form id="maintenanceForm">
+
+            <input type="hidden" id="maintenanceId">
+
+            <div class="asset-form-section">
+
+                <h3>
+                    <i data-lucide="wrench"></i>
+                    Maintenance Details
+                </h3>
+
+                <div class="management-form-grid">
+
+                    <div class="form-group">
+                        <label for="maintenanceType">Maintenance Type *</label>
+                        <select id="maintenanceType" required>
+                            <option value="">Select maintenance type</option>
+                            <option value="Preventive">Preventive Maintenance</option>
+                            <option value="Corrective">Corrective Maintenance</option>
+                            <option value="Repair">Repair</option>
+                            <option value="Inspection">Inspection</option>
+                            <option value="Upgrade">Upgrade</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="maintenanceStatus">Maintenance Status *</label>
+                        <select id="maintenanceStatus" required>
+                            <option value="Open">Open</option>
+                            <option value="In Progress">In Progress</option>
+                            <option value="Completed">Completed</option>
+                            <option value="Cancelled">Cancelled</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="maintenanceProvider">Service Provider</label>
+                        <input type="text" id="maintenanceProvider"
+                               maxlength="150"
+                               placeholder="Service provider or technician">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="maintenanceCost">Maintenance Cost (R)</label>
+                        <input type="number" id="maintenanceCost"
+                               min="0" step="0.01"
+                               placeholder="0.00">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="maintenanceScheduled">Scheduled Date</label>
+                        <input type="datetime-local" id="maintenanceScheduled">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="maintenanceCompleted">Completion Date</label>
+                        <input type="datetime-local" id="maintenanceCompleted">
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <label for="maintenanceDescription">Description *</label>
+                    <textarea id="maintenanceDescription"
+                              rows="5"
+                              maxlength="2000"
+                              required
+                              placeholder="Describe the fault, maintenance work required or repair performed..."></textarea>
+                </div>
+
+            </div>
+
+            <div class="form-actions">
+
+                <button type="button" class="secondary-button"
+                        id="cancelMaintenance">
+                    Cancel
+                </button>
+
+                <button type="submit" class="primary-button"
+                        id="saveMaintenanceButton">
+                    <i data-lucide="save"></i>
+                    Save Maintenance Record
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<!-- Maintenance History Modal -->
+<div class="modal-overlay" id="maintenanceHistoryModal">
+
+    <div class="asset-modal">
+
+        <div class="details-header">
+
+            <div>
+                <span class="date-label">IT ASSET MANAGEMENT</span>
+                <h2>Maintenance History</h2>
+                <p id="maintenanceHistoryAssetInfo"></p>
+            </div>
+
+            <button type="button" class="modal-close"
+                    id="closeMaintenanceHistoryModal"
+                    aria-label="Close maintenance history">
+                <i data-lucide="x"></i>
+            </button>
+
+        </div>
+
+        <div class="maintenance-history-content">
+
+            <div class="panel-header">
+                <div>
+                    <h3>Service Records</h3>
+                    <p>Recorded maintenance and repair activities for this asset.</p>
+                </div>
+
+                <button type="button" class="primary-button"
+                        id="addMaintenanceFromHistory">
+                    <i data-lucide="plus"></i>
+                    Add Record
+                </button>
+            </div>
+
+            <div class="table-wrapper">
+
+                <table class="asset-table">
+
+                    <thead>
+                        <tr>
+                            <th>Maintenance Type</th>
+                            <th>Description</th>
+                            <th>Status</th>
+                            <th>Service Provider</th>
+                            <th>Cost</th>
+                            <th>Recorded By</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="maintenanceHistoryTableBody"></tbody>
+
+                </table>
+
+            </div>
+
+            <div class="empty-state" id="maintenanceHistoryEmptyState">
+                <div class="empty-icon">
+                    <i data-lucide="clipboard-list"></i>
+                </div>
+                <h3>No maintenance records</h3>
+                <p>No maintenance activities have been recorded for this asset.</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="../js/demo-engine.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/app.js"></script>
+<script src="../js/assets.js"></script>
+
+</body>
+</html>
+

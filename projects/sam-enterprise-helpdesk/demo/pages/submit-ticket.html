@@ -1,0 +1,526 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Submit a Ticket | Sam Enterprise</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+
+<div class="app-container">
+
+    <aside class="sidebar" id="sidebar">
+
+        <div class="brand">
+            <div class="brand-icon">S</div>
+            <div>
+                <h2>SAM ENTERPRISE</h2>
+                <span>IT SERVICE MANAGEMENT</span>
+            </div>
+        </div>
+
+        <div class="sidebar-label">EMPLOYEE PORTAL</div>
+
+        <nav class="navigation">
+
+            <a href="../index.html" class="nav-link">
+                <i data-lucide="layout-dashboard"></i>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="submit-ticket.html" class="nav-link active">
+                <i data-lucide="plus-circle"></i>
+                <span>Submit a Ticket</span>
+            </a>
+
+            <a href="tickets.html" class="nav-link">
+                <i data-lucide="ticket"></i>
+                <span>My Tickets</span>
+            </a>
+
+            <a href="knowledge-base.html" class="nav-link">
+                <i data-lucide="book-open"></i>
+                <span>Knowledge Base</span>
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <div class="support-card">
+                <i data-lucide="headset"></i>
+                <h4>Need assistance?</h4>
+                <p>Submit a support request and our IT team will assist you.</p>
+            </div>
+
+            <div class="user-profile">
+                <div class="avatar" id="sidebarUserAvatar">U</div>
+                <div class="user-info">
+                    <strong id="sidebarUserName">Loading...</strong>
+                    <span id="sidebarUserRole">Loading...</span>
+                </div>
+                <i data-lucide="chevron-down"></i>
+            </div>
+
+        </div>
+
+    </aside>
+
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <div class="topbar-left">
+
+                <button class="menu-toggle" id="menuToggle"
+                        aria-label="Toggle navigation">
+                    <i data-lucide="menu"></i>
+                </button>
+
+                <div>
+                    <span class="breadcrumb">Employee Portal /</span>
+                    <strong>Submit a Ticket</strong>
+                </div>
+
+            </div>
+
+            <div class="topbar-right">
+
+                <div class="system-status">
+                    <span class="status-dot"></span>
+                    IT Support Available
+                </div>
+
+                <button class="icon-button" aria-label="Notifications">
+                    <i data-lucide="bell"></i>
+                </button>
+
+                <div class="topbar-user">
+                    <div class="avatar" id="topbarUserAvatar">U</div>
+                    <div>
+                        <strong id="topbarUserName">Loading...</strong>
+                        <span id="topbarUserRole">Loading...</span>
+                    </div>
+                </div>
+
+            </div>
+
+        </header>
+
+        <section class="dashboard-content">
+
+            <div class="welcome-section">
+
+                <div>
+                    <p class="date-label">IT SUPPORT SERVICES</p>
+                    <h1>Submit a Support Ticket</h1>
+                    <p>Describe your IT problem and our support team will assist you.</p>
+                </div>
+
+                <a href="tickets.html" class="secondary-button">
+                    <i data-lucide="ticket"></i>
+                    My Tickets
+                </a>
+
+            </div>
+
+            <div class="ticket-layout">
+
+                <section class="content-panel ticket-form-panel">
+
+                    <div class="form-heading">
+                        <div>
+                            <h2>Ticket Information</h2>
+                            <p>Fields marked with * are required.</p>
+                        </div>
+
+                        <span class="form-reference">NEW REQUEST</span>
+                    </div>
+
+                    <form id="ticketForm">
+
+                        <div class="form-section">
+
+                            <h3>
+                                <i data-lucide="user"></i>
+                                Employee Information
+                            </h3>
+
+                            <div class="form-grid">
+
+                                <div class="form-group">
+                                    <label for="employeeName">Full Name *</label>
+                                    <input
+                                        type="text"
+                                        id="employeeName"
+                                        name="employeeName"
+                                        readonly
+                                        required
+                                    >
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="employeeEmail">Company Email *</label>
+                                    <input
+                                        type="email"
+                                        id="employeeEmail"
+                                        name="employeeEmail"
+                                        readonly
+                                        required
+                                    >
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="department">Department *</label>
+                                    <input
+                                        type="text"
+                                        id="department"
+                                        name="department"
+                                        readonly
+                                        required
+                                    >
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="contactNumber">Contact Number</label>
+                                    <input
+                                        type="tel"
+                                        id="contactNumber"
+                                        name="contactNumber"
+                                        placeholder="+27 00 000 0000"
+                                    >
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="form-section">
+
+                            <h3>
+                                <i data-lucide="monitor"></i>
+                                Technical Issue Details
+                            </h3>
+
+                            <div class="form-group">
+                                <label for="issueTitle">Issue Title *</label>
+                                <input
+                                    type="text"
+                                    id="issueTitle"
+                                    name="issueTitle"
+                                    placeholder="E.g. Unable to connect to company network"
+                                    maxlength="200"
+                                    required
+                                >
+                            </div>
+
+                            <div class="form-grid">
+
+                                <div class="form-group">
+                                    <label for="issueCategory">Issue Category *</label>
+                                    <select id="issueCategory" name="issueCategory" required>
+                                        <option value="">Select issue category</option>
+                                        <option>Network & Internet</option>
+                                        <option>Hardware Problems</option>
+                                        <option>Software Installation</option>
+                                        <option>Email Problems</option>
+                                        <option>Account & Access</option>
+                                        <option>Printer & Scanner</option>
+                                        <option>Cybersecurity Incident</option>
+                                        <option>Other</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="priority">Priority Level *</label>
+                                    <select id="priority" name="priority" required>
+                                        <option value="">Select priority</option>
+                                        <option value="Low">Low</option>
+                                        <option value="Medium">Medium</option>
+                                        <option value="High">High</option>
+                                        <option value="Critical">Critical</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="location">Work Location *</label>
+                                    <input
+                                        type="text"
+                                        id="location"
+                                        name="location"
+                                        placeholder="E.g. Johannesburg Office"
+                                        required
+                                    >
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="assetNumber">Asset Number (Optional)</label>
+                                    <input
+                                        type="text"
+                                        id="assetNumber"
+                                        name="assetNumber"
+                                        placeholder="E.g. SAM-LAP-001"
+                                    >
+                                </div>
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <label for="description">Describe Your Problem *</label>
+
+                                <textarea
+                                    id="description"
+                                    name="description"
+                                    rows="6"
+                                    minlength="20"
+                                    maxlength="2000"
+                                    placeholder="Explain what happened, when the problem started, what you were doing and any error messages you received..."
+                                    required
+                                ></textarea>
+
+                                <small class="field-hint">
+                                    Provide enough information to help the IT team diagnose the problem.
+                                </small>
+
+                            </div>
+
+                        </div>
+
+                        <div class="form-section">
+
+                            <h3>
+                                <i data-lucide="paperclip"></i>
+                                Supporting Documents
+                            </h3>
+
+                            <div class="upload-area">
+
+                                <i data-lucide="cloud-upload"></i>
+
+                                <h4>Upload supporting files</h4>
+
+                                <p>
+                                    Attach screenshots, error messages or relevant documents.
+                                </p>
+
+                                <label for="attachments" class="upload-button">
+                                    Choose Files
+                                </label>
+
+                                <input
+                                    type="file"
+                                    id="attachments"
+                                    name="attachments"
+                                    multiple
+                                    accept=".jpg,.jpeg,.png,.pdf,.txt"
+                                >
+
+                                <small>Maximum 5 MB per file. JPG, PNG, PDF and TXT.</small>
+
+                                <div id="fileList"></div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="form-actions">
+
+                            <button type="reset" class="secondary-button">
+                                Clear Form
+                            </button>
+
+                            <button type="submit" class="primary-button" id="submitTicketButton">
+                                <i data-lucide="send"></i>
+                                Submit Support Ticket
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </section>
+
+                <aside class="ticket-sidebar">
+
+                    <div class="content-panel information-card">
+
+                        <div class="info-icon blue">
+                            <i data-lucide="info"></i>
+                        </div>
+
+                        <h3>Before submitting</h3>
+
+                        <p>
+                            Help our technicians resolve your issue faster by providing:
+                        </p>
+
+                        <ul>
+                            <li>A clear issue title.</li>
+                            <li>The exact error message.</li>
+                            <li>When the problem started.</li>
+                            <li>What you have already tried.</li>
+                            <li>Screenshots where appropriate.</li>
+                        </ul>
+
+                    </div>
+
+                    <div class="content-panel information-card">
+
+                        <div class="info-icon orange">
+                            <i data-lucide="alert-triangle"></i>
+                        </div>
+
+                        <h3>Priority guidance</h3>
+
+                        <div class="priority-guide">
+                            <strong class="critical-text">Critical</strong>
+                            <p>Major business operations affected or a serious security incident.</p>
+                        </div>
+
+                        <div class="priority-guide">
+                            <strong class="high-text">High</strong>
+                            <p>Important services unavailable or multiple employees affected.</p>
+                        </div>
+
+                        <div class="priority-guide">
+                            <strong class="medium-text">Medium</strong>
+                            <p>Individual employee experiencing a significant disruption.</p>
+                        </div>
+
+                        <div class="priority-guide">
+                            <strong class="low-text">Low</strong>
+                            <p>Minor issue or general assistance request.</p>
+                        </div>
+
+                    </div>
+
+                    <div class="content-panel emergency-card">
+
+                        <i data-lucide="shield-alert"></i>
+
+                        <h3>Security emergency?</h3>
+
+                        <p>
+                            If you suspect a cyberattack, compromised account or data breach,
+                            contact your IT security team immediately through your company's
+                            approved emergency channel.
+                        </p>
+
+                    </div>
+
+                </aside>
+
+            </div>
+
+            <footer class="footer">
+                <span>Â© 2026 Sam Enterprise. All rights reserved.</span>
+                <span>Employee Support Portal</span>
+            </footer>
+
+        </section>
+
+    </main>
+
+</div>
+
+<div class="modal-overlay" id="successModal">
+
+    <div class="success-modal">
+
+        <div class="success-icon">
+            <i data-lucide="check-circle"></i>
+        </div>
+
+        <h2>Ticket Submitted!</h2>
+
+        <p>
+            Your support request has been saved successfully.
+            You can now track it in My Tickets.
+        </p>
+
+        <div class="generated-reference">
+            <span>Your ticket reference</span>
+            <strong id="generatedTicketId">SAM-2026-01</strong>
+        </div>
+
+        <button id="closeModal" class="primary-button">
+            Continue
+        </button>
+
+    </div>
+
+</div>
+
+<script src="../js/demo-engine.js"></script>
+<script src="../js/auth.js"></script>
+
+<script>
+    async function initializeTicketPage() {
+        const user = await SamAuth.requireAuth();
+
+        if (!user) {
+            return;
+        }
+
+        const fullName = [user.first_name, user.last_name]
+            .filter(Boolean)
+            .join(" ");
+
+        const roleLabels = {
+            owner: "Owner",
+            administrator: "Administrator",
+            it_manager: "IT Manager",
+            technician: "Technician",
+            employee: "Employee",
+            auditor: "Auditor"
+        };
+
+        const roleLabel = roleLabels[user.role] || user.role;
+
+        const initials = [user.first_name, user.last_name]
+            .filter(Boolean)
+            .map(name => name.charAt(0).toUpperCase())
+            .join("")
+            .slice(0, 2) || "U";
+
+        document.getElementById("sidebarUserName").textContent = fullName;
+        document.getElementById("sidebarUserRole").textContent = roleLabel;
+        document.getElementById("topbarUserName").textContent = fullName;
+        document.getElementById("topbarUserRole").textContent = roleLabel;
+        document.getElementById("sidebarUserAvatar").textContent = initials;
+        document.getElementById("topbarUserAvatar").textContent = initials;
+
+        document.getElementById("employeeName").value = fullName;
+        document.getElementById("employeeEmail").value = user.email || "";
+        document.getElementById("department").value = user.department || "";
+
+        if (window.lucide) {
+            lucide.createIcons();
+        }
+
+        const appScript = document.createElement("script");
+        appScript.src = "../js/app.js";
+        document.body.appendChild(appScript);
+
+        const ticketScript = document.createElement("script");
+        ticketScript.src = "../js/tickets.js";
+        document.body.appendChild(ticketScript);
+    }
+
+    initializeTicketPage().catch(error => {
+        console.error("Ticket page initialization error:", error);
+        alert("Unable to load the ticket page. Please refresh and try again.");
+    });
+</script>
+
+</body>
+</html>
+

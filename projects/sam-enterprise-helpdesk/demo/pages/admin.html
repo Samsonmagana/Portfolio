@@ -1,0 +1,546 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Administration | Sam Enterprise</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+
+<div class="app-container">
+
+    <!-- ADMIN SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+
+        <div class="brand">
+            <div class="brand-icon">S</div>
+            <div>
+                <h2>SAM ENTERPRISE</h2>
+                <span>IT SERVICE MANAGEMENT</span>
+            </div>
+        </div>
+
+        <div class="sidebar-label">ADMINISTRATION</div>
+
+        <nav class="navigation">
+
+            <a href="admin.html" class="nav-link active">
+                <i data-lucide="layout-dashboard"></i>
+                <span>Admin Dashboard</span>
+            </a>
+
+            <a href="users.html" class="nav-link">
+                <i data-lucide="users"></i>
+                <span>User Management</span>
+            </a>
+
+            <a href="technician.html" class="nav-link">
+                <i data-lucide="headset"></i>
+                <span>Technician Workspace</span>
+            </a>
+
+            <a href="assets.html" class="nav-link">
+                <i data-lucide="monitor"></i>
+                <span>IT Assets</span>
+            </a>
+
+            <a href="tickets.html" class="nav-link">
+                <i data-lucide="ticket"></i>
+                <span>Support Tickets</span>
+            </a>
+
+            <a href="knowledge-base.html" class="nav-link">
+                <i data-lucide="book-open"></i>
+                <span>Knowledge Base</span>
+            </a>
+
+        </nav>
+
+        <div class="sidebar-label">SYSTEM</div>
+
+        <nav class="navigation">
+
+            <a href="settings.html" class="nav-link">
+                <i data-lucide="settings"></i>
+                <span>System Settings</span>
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <div class="support-card">
+                <i data-lucide="shield-check"></i>
+                <h4>Administration Centre</h4>
+                <p>Monitor and manage your organisation's IT support environment.</p>
+            </div>
+
+            <div class="user-profile">
+                <div class="avatar">SA</div>
+
+                <div class="user-info">
+                    <strong>System Admin</strong>
+                    <span>Administrator Â· Demo</span>
+                </div>
+
+                <i data-lucide="chevron-down"></i>
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <div class="topbar-left">
+
+                <button class="menu-toggle" id="menuToggle"
+                        aria-label="Toggle navigation">
+                    <i data-lucide="menu"></i>
+                </button>
+
+                <div>
+                    <span class="breadcrumb">System /</span>
+                    <strong>Administration</strong>
+                </div>
+
+            </div>
+
+            <div class="topbar-right">
+
+                <div class="system-status">
+                    <span class="status-dot"></span>
+                    Administration Active
+                </div>
+
+                <button class="icon-button" aria-label="Notifications">
+                    <i data-lucide="bell"></i>
+                </button>
+
+                <div class="topbar-user">
+                    <div class="avatar">SA</div>
+
+                    <div>
+                        <strong>System Admin</strong>
+                        <span>Administrator</span>
+                    </div>
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- ADMIN DASHBOARD -->
+        <section class="dashboard-content">
+
+            <div class="welcome-section">
+
+                <div>
+                    <p class="date-label" id="adminDate"></p>
+
+                    <h1>Administration Dashboard</h1>
+
+                    <p>
+                        Monitor your organisation's IT service management operations.
+                    </p>
+                </div>
+
+                <button type="button" class="secondary-button"
+                        id="refreshAdmin">
+
+                    <i data-lucide="refresh-cw"></i>
+                    Refresh Overview
+
+                </button>
+
+            </div>
+
+
+            <!-- MAIN STATISTICS -->
+            <section class="stats-grid admin-stats-grid">
+
+                <article class="stat-card">
+
+                    <div class="stat-top">
+                        <span>Registered Users</span>
+
+                        <div class="stat-icon blue">
+                            <i data-lucide="users"></i>
+                        </div>
+                    </div>
+
+                    <h2 id="adminTotalUsers">0</h2>
+
+                    <p class="stat-description">
+                        Company user records
+                    </p>
+
+                </article>
+
+
+                <article class="stat-card">
+
+                    <div class="stat-top">
+                        <span>Total Tickets</span>
+
+                        <div class="stat-icon orange">
+                            <i data-lucide="ticket"></i>
+                        </div>
+                    </div>
+
+                    <h2 id="adminTotalTickets">0</h2>
+
+                    <p class="stat-description">
+                        All recorded support requests
+                    </p>
+
+                </article>
+
+
+                <article class="stat-card">
+
+                    <div class="stat-top">
+                        <span>Total IT Assets</span>
+
+                        <div class="stat-icon purple">
+                            <i data-lucide="monitor"></i>
+                        </div>
+                    </div>
+
+                    <h2 id="adminTotalAssets">0</h2>
+
+                    <p class="stat-description">
+                        Registered company equipment
+                    </p>
+
+                </article>
+
+
+                <article class="stat-card">
+
+                    <div class="stat-top">
+                        <span>Unresolved Tickets</span>
+
+                        <div class="stat-icon red">
+                            <i data-lucide="alert-circle"></i>
+                        </div>
+                    </div>
+
+                    <h2 id="adminUnresolvedTickets">0</h2>
+
+                    <p class="stat-description">
+                        Tickets requiring attention
+                    </p>
+
+                </article>
+
+            </section>
+
+
+            <!-- SECONDARY STATISTICS -->
+            <section class="admin-secondary-stats">
+
+                <div class="admin-mini-stat">
+                    <span class="mini-stat-icon blue">
+                        <i data-lucide="user-check"></i>
+                    </span>
+
+                    <div>
+                        <strong id="adminEmployees">0</strong>
+                        <span>Employees</span>
+                    </div>
+                </div>
+
+
+                <div class="admin-mini-stat">
+                    <span class="mini-stat-icon purple">
+                        <i data-lucide="headset"></i>
+                    </span>
+
+                    <div>
+                        <strong id="adminTechnicians">0</strong>
+                        <span>Technicians</span>
+                    </div>
+                </div>
+
+
+                <div class="admin-mini-stat">
+                    <span class="mini-stat-icon green">
+                        <i data-lucide="shield-check"></i>
+                    </span>
+
+                    <div>
+                        <strong id="adminAdministrators">0</strong>
+                        <span>Administrators</span>
+                    </div>
+                </div>
+
+
+                <div class="admin-mini-stat">
+                    <span class="mini-stat-icon orange">
+                        <i data-lucide="wrench"></i>
+                    </span>
+
+                    <div>
+                        <strong id="adminMaintenanceAssets">0</strong>
+                        <span>Assets in Maintenance</span>
+                    </div>
+                </div>
+
+            </section>
+
+
+            <!-- OPERATIONS OVERVIEW -->
+            <section class="admin-overview-grid">
+
+                <!-- TICKET DISTRIBUTION -->
+                <div class="content-panel">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <h2>Ticket Distribution</h2>
+                            <p>Current support request statuses.</p>
+                        </div>
+
+                        <a href="tickets.html" class="text-link">
+                            View tickets â†’
+                        </a>
+
+                    </div>
+
+
+                    <div class="admin-chart-list">
+
+                        <div class="admin-chart-row">
+                            <span>Open</span>
+
+                            <div class="admin-chart-track">
+                                <div class="admin-chart-fill open-fill"
+                                     id="adminOpenBar"></div>
+                            </div>
+
+                            <strong id="adminOpenCount">0</strong>
+                        </div>
+
+
+                        <div class="admin-chart-row">
+                            <span>In Progress</span>
+
+                            <div class="admin-chart-track">
+                                <div class="admin-chart-fill progress-fill-admin"
+                                     id="adminProgressBar"></div>
+                            </div>
+
+                            <strong id="adminProgressCount">0</strong>
+                        </div>
+
+
+                        <div class="admin-chart-row">
+                            <span>Pending</span>
+
+                            <div class="admin-chart-track">
+                                <div class="admin-chart-fill pending-fill"
+                                     id="adminPendingBar"></div>
+                            </div>
+
+                            <strong id="adminPendingCount">0</strong>
+                        </div>
+
+
+                        <div class="admin-chart-row">
+                            <span>Resolved</span>
+
+                            <div class="admin-chart-track">
+                                <div class="admin-chart-fill resolved-fill"
+                                     id="adminResolvedBar"></div>
+                            </div>
+
+                            <strong id="adminResolvedCount">0</strong>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- QUICK ACTIONS -->
+                <div class="content-panel">
+
+                    <div class="panel-header">
+                        <div>
+                            <h2>Administrative Actions</h2>
+                            <p>Quick access to management functions.</p>
+                        </div>
+                    </div>
+
+
+                    <div class="admin-quick-actions">
+
+                        <a href="users.html" class="admin-action">
+                            <span class="admin-action-icon blue">
+                                <i data-lucide="user-plus"></i>
+                            </span>
+
+                            <span>
+                                <strong>Manage Users</strong>
+                                <small>Register and update users</small>
+                            </span>
+
+                            <i data-lucide="chevron-right"></i>
+                        </a>
+
+
+                        <a href="assets.html" class="admin-action">
+                            <span class="admin-action-icon purple">
+                                <i data-lucide="monitor-plus"></i>
+                            </span>
+
+                            <span>
+                                <strong>Manage Assets</strong>
+                                <small>Register company equipment</small>
+                            </span>
+
+                            <i data-lucide="chevron-right"></i>
+                        </a>
+
+
+                        <a href="technician.html" class="admin-action">
+                            <span class="admin-action-icon green">
+                                <i data-lucide="headset"></i>
+                            </span>
+
+                            <span>
+                                <strong>IT Support Queue</strong>
+                                <small>Review and manage incidents</small>
+                            </span>
+
+                            <i data-lucide="chevron-right"></i>
+                        </a>
+
+
+                        <a href="settings.html" class="admin-action">
+                            <span class="admin-action-icon orange">
+                                <i data-lucide="settings"></i>
+                            </span>
+
+                            <span>
+                                <strong>System Settings</strong>
+                                <small>Configure company settings</small>
+                            </span>
+
+                            <i data-lucide="chevron-right"></i>
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- RECENT TICKETS -->
+            <section class="content-panel">
+
+                <div class="panel-header">
+
+                    <div>
+                        <h2>Recent Support Activity</h2>
+                        <p>Latest reported IT incidents.</p>
+                    </div>
+
+                    <a href="technician.html" class="text-link">
+                        Open support queue â†’
+                    </a>
+
+                </div>
+
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>Ticket ID</th>
+                                <th>Employee</th>
+                                <th>Issue</th>
+                                <th>Department</th>
+                                <th>Priority</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="adminRecentTickets">
+
+                            <!-- JavaScript inserts records -->
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+                <p class="admin-empty-message" id="adminTicketEmpty">
+                    No support requests have been submitted yet.
+                </p>
+
+            </section>
+
+
+            <!-- SYSTEM INFORMATION -->
+            <section class="admin-system-information">
+
+                <div>
+                    <i data-lucide="database"></i>
+
+                    <div>
+                        <strong>Frontend Demonstration Environment</strong>
+                        <p>
+                            Dashboard information is currently retrieved
+                            from browser LocalStorage.
+                        </p>
+                    </div>
+                </div>
+
+                <span>Backend integration pending</span>
+
+            </section>
+
+
+            <footer class="footer">
+
+                <span>Â© 2026 Sam Enterprise. All rights reserved.</span>
+
+                <span>Administration Centre Â· Version 1.0</span>
+
+            </footer>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script src="../js/demo-engine.js"></script>
+<script src="../js/app.js"></script>
+<script src="../js/user-store.js"></script>
+<script src="../js/admin.js"></script>
+
+</body>
+
+</html>
+

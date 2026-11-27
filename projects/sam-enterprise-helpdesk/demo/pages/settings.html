@@ -1,0 +1,798 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Sam Enterprise system configuration">
+
+    <title>System Settings | Sam Enterprise</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+
+<div class="app-container">
+
+    <aside class="sidebar" id="sidebar">
+
+        <div class="brand">
+            <div class="brand-icon">S</div>
+            <div>
+                <h2>SAM ENTERPRISE</h2>
+                <span>IT SERVICE MANAGEMENT</span>
+            </div>
+        </div>
+
+        <div class="sidebar-label">ADMINISTRATION</div>
+
+        <nav class="navigation">
+
+            <a href="admin.html" class="nav-link">
+                <i data-lucide="layout-dashboard"></i>
+                <span>Admin Dashboard</span>
+            </a>
+
+            <a href="users.html" class="nav-link">
+                <i data-lucide="users"></i>
+                <span>User Management</span>
+            </a>
+
+            <a href="technician.html" class="nav-link">
+                <i data-lucide="headset"></i>
+                <span>Technician Workspace</span>
+            </a>
+
+            <a href="assets.html" class="nav-link">
+                <i data-lucide="monitor"></i>
+                <span>IT Asset Management</span>
+            </a>
+
+            <a href="tickets.html" class="nav-link">
+                <i data-lucide="ticket"></i>
+                <span>Support Tickets</span>
+            </a>
+
+        </nav>
+
+        <div class="sidebar-label">SYSTEM</div>
+
+        <nav class="navigation">
+
+            <a href="reports.html" class="nav-link">
+                <i data-lucide="chart-no-axes-combined"></i>
+                <span>Reports & Analytics</span>
+            </a>
+
+            <a href="settings.html" class="nav-link active">
+                <i data-lucide="settings"></i>
+                <span>System Settings</span>
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <div class="support-card">
+                <i data-lucide="settings"></i>
+                <h4>System Configuration</h4>
+                <p>Manage company information and helpdesk preferences.</p>
+            </div>
+
+            <div class="user-profile">
+                <div class="avatar">SA</div>
+                <div class="user-info">
+                    <strong>System Admin</strong>
+                    <span>Administrator Â· Demo</span>
+                </div>
+                <i data-lucide="chevron-down"></i>
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <div class="topbar-left">
+
+                <button class="menu-toggle" id="menuToggle"
+                        aria-label="Toggle navigation">
+                    <i data-lucide="menu"></i>
+                </button>
+
+                <div>
+                    <span class="breadcrumb">Administration /</span>
+                    <strong>System Settings</strong>
+                </div>
+
+            </div>
+
+            <div class="topbar-right">
+
+                <div class="system-status">
+                    <span class="status-dot"></span>
+                    Configuration Centre
+                </div>
+
+                <button class="icon-button" aria-label="Notifications">
+                    <i data-lucide="bell"></i>
+                </button>
+
+                <div class="topbar-user">
+                    <div class="avatar">SA</div>
+                    <div>
+                        <strong>System Admin</strong>
+                        <span>Administrator</span>
+                    </div>
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <section class="dashboard-content settings-content">
+
+            <div class="welcome-section">
+
+                <div>
+                    <p class="date-label" id="settingsDate"></p>
+                    <h1>System Settings</h1>
+                    <p>Configure your organisation's IT service management environment.</p>
+                </div>
+
+                <span class="settings-save-indicator" id="settingsSaveIndicator">
+                    <i data-lucide="cloud-check"></i>
+                    Settings saved locally
+                </span>
+
+            </div>
+
+
+            <div class="settings-layout">
+
+                <aside class="settings-navigation">
+
+                    <h3>CONFIGURATION</h3>
+
+                    <a href="#companySettings" class="settings-nav-link active">
+                        <i data-lucide="building-2"></i>
+                        Company Profile
+                    </a>
+
+                    <a href="#departmentSettings" class="settings-nav-link">
+                        <i data-lucide="network"></i>
+                        Departments
+                    </a>
+
+                    <a href="#ticketSettings" class="settings-nav-link">
+                        <i data-lucide="ticket"></i>
+                        Ticket Configuration
+                    </a>
+
+                    <a href="#slaSettings" class="settings-nav-link">
+                        <i data-lucide="clock"></i>
+                        SLA Configuration
+                    </a>
+
+                    <a href="#notificationSettings" class="settings-nav-link">
+                        <i data-lucide="bell"></i>
+                        Notifications
+                    </a>
+
+                    <a href="#systemPreferences" class="settings-nav-link">
+                        <i data-lucide="sliders-horizontal"></i>
+                        System Preferences
+                    </a>
+
+                </aside>
+
+
+                <div class="settings-main">
+
+
+                    <!-- COMPANY PROFILE -->
+                    <section class="content-panel settings-card"
+                             id="companySettings">
+
+                        <div class="settings-card-heading">
+
+                            <div class="settings-heading-icon blue">
+                                <i data-lucide="building-2"></i>
+                            </div>
+
+                            <div>
+                                <h2>Company Profile</h2>
+                                <p>Manage the organisation's basic information.</p>
+                            </div>
+
+                        </div>
+
+
+                        <form id="companySettingsForm">
+
+                            <div class="settings-form-grid">
+
+                                <div class="form-group">
+                                    <label for="companyName">Company Name *</label>
+                                    <input type="text" id="companyName"
+                                           maxlength="100" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="companyWebsite">Website</label>
+                                    <input type="url" id="companyWebsite"
+                                           placeholder="https://www.example.co.za">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="companyEmail">Support Email *</label>
+                                    <input type="email" id="companyEmail"
+                                           maxlength="120" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="companyPhone">Support Contact Number</label>
+                                    <input type="tel" id="companyPhone"
+                                           maxlength="25">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="companyAddress">Office Address</label>
+                                    <input type="text" id="companyAddress"
+                                           maxlength="180">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="companyCountry">Country</label>
+                                    <select id="companyCountry">
+                                        <option value="South Africa">South Africa</option>
+                                        <option value="Botswana">Botswana</option>
+                                        <option value="Namibia">Namibia</option>
+                                        <option value="Zimbabwe">Zimbabwe</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group management-full-width">
+                                    <label for="companyDescription">Company Description</label>
+                                    <textarea id="companyDescription"
+                                              rows="3" maxlength="500"
+                                              placeholder="Brief description of your organisation..."></textarea>
+                                </div>
+
+                            </div>
+
+                            <div class="settings-form-actions">
+                                <button type="submit" class="primary-button">
+                                    <i data-lucide="save"></i>
+                                    Save Company Profile
+                                </button>
+                            </div>
+
+                        </form>
+
+                    </section>
+
+
+                    <!-- DEPARTMENTS -->
+                    <section class="content-panel settings-card"
+                             id="departmentSettings">
+
+                        <div class="settings-card-heading">
+
+                            <div class="settings-heading-icon purple">
+                                <i data-lucide="network"></i>
+                            </div>
+
+                            <div>
+                                <h2>Department Management</h2>
+                                <p>Maintain the departments available to the organisation.</p>
+                            </div>
+
+                        </div>
+
+
+                        <form id="departmentForm" class="department-add-form">
+
+                            <div class="form-group">
+                                <label for="newDepartment">New Department</label>
+                                <input type="text" id="newDepartment"
+                                       maxlength="70"
+                                       placeholder="Enter department name"
+                                       required>
+                            </div>
+
+                            <button type="submit" class="primary-button">
+                                <i data-lucide="plus"></i>
+                                Add Department
+                            </button>
+
+                        </form>
+
+
+                        <div class="department-list" id="departmentList">
+
+                            <!-- Departments are inserted using JavaScript -->
+
+                        </div>
+
+                        <p class="settings-helper">
+                            Departments currently assigned to user records should
+                            be reviewed before removing them.
+                        </p>
+
+                    </section>
+
+
+                    <!-- TICKET CONFIGURATION -->
+                    <section class="content-panel settings-card"
+                             id="ticketSettings">
+
+                        <div class="settings-card-heading">
+
+                            <div class="settings-heading-icon green">
+                                <i data-lucide="ticket"></i>
+                            </div>
+
+                            <div>
+                                <h2>Ticket Configuration</h2>
+                                <p>Configure ticket references and default support settings.</p>
+                            </div>
+
+                        </div>
+
+
+                        <form id="ticketSettingsForm">
+
+                            <div class="settings-form-grid">
+
+                                <div class="form-group">
+                                    <label for="ticketPrefix">Ticket Reference Prefix *</label>
+                                    <input type="text" id="ticketPrefix"
+                                           maxlength="8"
+                                           pattern="[A-Za-z0-9]+"
+                                           required>
+                                    <small class="field-hint">
+                                        Example: SAM produces SAM-000001.
+                                    </small>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="ticketNextNumber">Next Ticket Number *</label>
+                                    <input type="number" id="ticketNextNumber"
+                                           min="1" max="999999999" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="defaultTicketPriority">Default Priority</label>
+                                    <select id="defaultTicketPriority">
+                                        <option value="Low">Low</option>
+                                        <option value="Medium">Medium</option>
+                                        <option value="High">High</option>
+                                        <option value="Critical">Critical</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="maxAttachments">Maximum Attachments</label>
+                                    <input type="number" id="maxAttachments"
+                                           min="1" max="10" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="maxAttachmentSize">Maximum File Size (MB)</label>
+                                    <input type="number" id="maxAttachmentSize"
+                                           min="1" max="25" required>
+                                </div>
+
+                            </div>
+
+                            <div class="settings-form-actions">
+                                <button type="submit" class="primary-button">
+                                    <i data-lucide="save"></i>
+                                    Save Ticket Settings
+                                </button>
+                            </div>
+
+                        </form>
+
+                    </section>
+
+
+                    <!-- SLA CONFIGURATION -->
+                    <section class="content-panel settings-card"
+                             id="slaSettings">
+
+                        <div class="settings-card-heading">
+
+                            <div class="settings-heading-icon orange">
+                                <i data-lucide="clock"></i>
+                            </div>
+
+                            <div>
+                                <h2>Service Level Agreement (SLA)</h2>
+                                <p>Define target response and resolution times for incidents.</p>
+                            </div>
+
+                        </div>
+
+
+                        <div class="sla-information">
+                            These are configurable internal service targets, not
+                            verified contractual commitments.
+                        </div>
+
+
+                        <form id="slaSettingsForm">
+
+                            <div class="sla-table-wrapper">
+
+                                <table class="sla-table">
+
+                                    <thead>
+                                        <tr>
+                                            <th>Priority</th>
+                                            <th>Response Target (Hours)</th>
+                                            <th>Resolution Target (Hours)</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+
+                                        <tr>
+                                            <td>
+                                                <span class="priority critical">Critical</span>
+                                            </td>
+                                            <td>
+                                                <input type="number" id="criticalResponse"
+                                                       min="0.25" max="168" step="0.25" required>
+                                            </td>
+                                            <td>
+                                                <input type="number" id="criticalResolution"
+                                                       min="0.25" max="720" step="0.25" required>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                <span class="priority high">High</span>
+                                            </td>
+                                            <td>
+                                                <input type="number" id="highResponse"
+                                                       min="0.25" max="168" step="0.25" required>
+                                            </td>
+                                            <td>
+                                                <input type="number" id="highResolution"
+                                                       min="0.25" max="720" step="0.25" required>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                <span class="priority medium">Medium</span>
+                                            </td>
+                                            <td>
+                                                <input type="number" id="mediumResponse"
+                                                       min="0.25" max="168" step="0.25" required>
+                                            </td>
+                                            <td>
+                                                <input type="number" id="mediumResolution"
+                                                       min="0.25" max="720" step="0.25" required>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                <span class="priority low">Low</span>
+                                            </td>
+                                            <td>
+                                                <input type="number" id="lowResponse"
+                                                       min="0.25" max="168" step="0.25" required>
+                                            </td>
+                                            <td>
+                                                <input type="number" id="lowResolution"
+                                                       min="0.25" max="720" step="0.25" required>
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+
+                                </table>
+
+                            </div>
+
+
+                            <div class="settings-form-actions">
+
+                                <button type="submit" class="primary-button">
+                                    <i data-lucide="save"></i>
+                                    Save SLA Targets
+                                </button>
+
+                            </div>
+
+                        </form>
+
+                    </section>
+
+
+                    <!-- NOTIFICATIONS -->
+                    <section class="content-panel settings-card"
+                             id="notificationSettings">
+
+                        <div class="settings-card-heading">
+
+                            <div class="settings-heading-icon blue">
+                                <i data-lucide="bell"></i>
+                            </div>
+
+                            <div>
+                                <h2>Notification Preferences</h2>
+                                <p>Select which system events should generate notification preferences.</p>
+                            </div>
+
+                        </div>
+
+
+                        <form id="notificationSettingsForm">
+
+                            <div class="settings-toggle-list">
+
+                                <label class="settings-toggle-row">
+
+                                    <span>
+                                        <strong>New Ticket Notifications</strong>
+                                        <small>Notify the support team when an employee submits a ticket.</small>
+                                    </span>
+
+                                    <input type="checkbox" id="notifyNewTicket">
+                                    <span class="toggle-switch"></span>
+
+                                </label>
+
+
+                                <label class="settings-toggle-row">
+
+                                    <span>
+                                        <strong>Ticket Assignment</strong>
+                                        <small>Notify technicians when a ticket is assigned to them.</small>
+                                    </span>
+
+                                    <input type="checkbox" id="notifyAssignment">
+                                    <span class="toggle-switch"></span>
+
+                                </label>
+
+
+                                <label class="settings-toggle-row">
+
+                                    <span>
+                                        <strong>Status Updates</strong>
+                                        <small>Notify employees when their ticket status changes.</small>
+                                    </span>
+
+                                    <input type="checkbox" id="notifyStatus">
+                                    <span class="toggle-switch"></span>
+
+                                </label>
+
+
+                                <label class="settings-toggle-row">
+
+                                    <span>
+                                        <strong>Ticket Resolution</strong>
+                                        <small>Notify employees when their tickets are resolved.</small>
+                                    </span>
+
+                                    <input type="checkbox" id="notifyResolution">
+                                    <span class="toggle-switch"></span>
+
+                                </label>
+
+
+                                <label class="settings-toggle-row">
+
+                                    <span>
+                                        <strong>SLA Warning Preferences</strong>
+                                        <small>Flag tickets approaching their configured SLA targets.</small>
+                                    </span>
+
+                                    <input type="checkbox" id="notifySLA">
+                                    <span class="toggle-switch"></span>
+
+                                </label>
+
+                            </div>
+
+
+                            <div class="settings-form-actions">
+
+                                <button type="submit" class="primary-button">
+                                    <i data-lucide="save"></i>
+                                    Save Notification Preferences
+                                </button>
+
+                            </div>
+
+                        </form>
+
+                    </section>
+
+
+                    <!-- SYSTEM PREFERENCES -->
+                    <section class="content-panel settings-card"
+                             id="systemPreferences">
+
+                        <div class="settings-card-heading">
+
+                            <div class="settings-heading-icon purple">
+                                <i data-lucide="sliders-horizontal"></i>
+                            </div>
+
+                            <div>
+                                <h2>System Preferences</h2>
+                                <p>Configure general behaviour of the demonstration platform.</p>
+                            </div>
+
+                        </div>
+
+
+                        <form id="systemSettingsForm">
+
+                            <div class="settings-form-grid">
+
+                                <div class="form-group">
+                                    <label for="systemTimezone">Timezone</label>
+                                    <select id="systemTimezone">
+                                        <option value="Africa/Johannesburg">
+                                            South Africa (SAST)
+                                        </option>
+                                        <option value="UTC">UTC</option>
+                                    </select>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label for="systemCurrency">Currency</label>
+                                    <select id="systemCurrency">
+                                        <option value="ZAR">South African Rand (ZAR)</option>
+                                        <option value="USD">US Dollar (USD)</option>
+                                        <option value="EUR">Euro (EUR)</option>
+                                        <option value="GBP">British Pound (GBP)</option>
+                                    </select>
+                                </div>
+
+                            </div>
+
+
+                            <div class="settings-toggle-list">
+
+                                <label class="settings-toggle-row">
+
+                                    <span>
+                                        <strong>Maintenance Mode</strong>
+                                        <small>Store a maintenance-mode configuration flag for future backend enforcement.</small>
+                                    </span>
+
+                                    <input type="checkbox" id="maintenanceMode">
+                                    <span class="toggle-switch"></span>
+
+                                </label>
+
+
+                                <label class="settings-toggle-row">
+
+                                    <span>
+                                        <strong>Allow Employee Ticket Submission</strong>
+                                        <small>Store whether the employee ticket portal should accept new requests.</small>
+                                    </span>
+
+                                    <input type="checkbox" id="allowTicketSubmission">
+                                    <span class="toggle-switch"></span>
+
+                                </label>
+
+                            </div>
+
+
+                            <div class="settings-form-actions">
+
+                                <button type="submit" class="primary-button">
+                                    <i data-lucide="save"></i>
+                                    Save System Preferences
+                                </button>
+
+                            </div>
+
+                        </form>
+
+                    </section>
+
+
+                    <!-- DANGER ZONE -->
+                    <section class="content-panel settings-danger-zone">
+
+                        <div class="settings-card-heading">
+
+                            <div class="settings-heading-icon red">
+                                <i data-lucide="alert-triangle"></i>
+                            </div>
+
+                            <div>
+                                <h2>Configuration Management</h2>
+                                <p>Manage stored demonstration configuration data.</p>
+                            </div>
+
+                        </div>
+
+
+                        <div class="danger-zone-content">
+
+                            <div>
+                                <strong>Reset system settings</strong>
+                                <p>
+                                    Restore configuration values to the original
+                                    demonstration defaults. This does not delete
+                                    tickets, users or assets.
+                                </p>
+                            </div>
+
+                            <button type="button" class="danger-button"
+                                    id="resetSettings">
+
+                                <i data-lucide="rotate-ccw"></i>
+                                Reset Settings
+
+                            </button>
+
+                        </div>
+
+                    </section>
+
+                </div>
+
+            </div>
+
+
+            <footer class="footer">
+
+                <span>Â© 2026 Sam Enterprise. All rights reserved.</span>
+
+                <span>System Configuration Â· Version 1.0</span>
+
+            </footer>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<div class="settings-toast" id="settingsToast" role="status"
+     aria-live="polite">
+
+    <i data-lucide="check-circle"></i>
+
+    <span id="settingsToastMessage">Settings saved successfully.</span>
+
+</div>
+
+
+<script src="../js/demo-engine.js"></script>
+<script src="../js/app.js"></script>
+<script src="../js/settings.js"></script>
+
+</body>
+
+</html>
+

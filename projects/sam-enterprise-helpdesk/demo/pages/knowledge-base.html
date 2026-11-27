@@ -1,0 +1,462 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Knowledge Base | Sam Enterprise</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+
+<div class="app-container">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+
+        <div class="brand">
+            <div class="brand-icon">S</div>
+            <div>
+                <h2>SAM ENTERPRISE</h2>
+                <span>IT SERVICE MANAGEMENT</span>
+            </div>
+        </div>
+
+        <div class="sidebar-label">EMPLOYEE PORTAL</div>
+
+        <nav class="navigation">
+
+            <a href="../index.html" class="nav-link">
+                <i data-lucide="layout-dashboard"></i>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="submit-ticket.html" class="nav-link">
+                <i data-lucide="plus-circle"></i>
+                <span>Submit a Ticket</span>
+            </a>
+
+            <a href="tickets.html" class="nav-link">
+                <i data-lucide="ticket"></i>
+                <span>My Tickets</span>
+            </a>
+
+            <a href="knowledge-base.html" class="nav-link active">
+                <i data-lucide="book-open"></i>
+                <span>Knowledge Base</span>
+            </a>
+
+        </nav>
+
+        <div class="sidebar-label">IT SUPPORT</div>
+
+        <nav class="navigation">
+
+            <a href="technician.html" class="nav-link">
+                <i data-lucide="headset"></i>
+                <span>Technician Workspace</span>
+            </a>
+
+            <a href="submit-ticket.html" class="nav-link">
+                <i data-lucide="life-buoy"></i>
+                <span>Get Support</span>
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <div class="support-card">
+                <i data-lucide="book-open-check"></i>
+                <h4>Self-Service Support</h4>
+                <p>Find solutions to common technical problems using our support guides.</p>
+                <a href="submit-ticket.html">Contact IT Support â†’</a>
+            </div>
+
+            <div class="user-profile">
+                <div class="avatar">JD</div>
+
+                <div class="user-info">
+                    <strong>John Doe</strong>
+                    <span>Employee</span>
+                </div>
+
+                <i data-lucide="chevron-down"></i>
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <div class="topbar-left">
+
+                <button class="menu-toggle" id="menuToggle"
+                        aria-label="Toggle navigation">
+                    <i data-lucide="menu"></i>
+                </button>
+
+                <div>
+                    <span class="breadcrumb">Employee Portal /</span>
+                    <strong>Knowledge Base</strong>
+                </div>
+
+            </div>
+
+            <div class="topbar-right">
+
+                <div class="system-status">
+                    <span class="status-dot"></span>
+                    IT Support Available
+                </div>
+
+                <button class="icon-button" aria-label="Notifications">
+                    <i data-lucide="bell"></i>
+                </button>
+
+                <div class="topbar-user">
+                    <div class="avatar">JD</div>
+
+                    <div>
+                        <strong>John Doe</strong>
+                        <span>Employee</span>
+                    </div>
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- KNOWLEDGE BASE PAGE -->
+        <section class="dashboard-content knowledge-content">
+
+            <!-- HERO SECTION -->
+            <section class="knowledge-hero">
+
+                <span class="knowledge-eyebrow">
+                    SAM ENTERPRISE SUPPORT CENTRE
+                </span>
+
+                <h1>How can we help you today?</h1>
+
+                <p>
+                    Search our technical guides, troubleshooting articles
+                    and frequently asked questions.
+                </p>
+
+                <div class="knowledge-search">
+
+                    <i data-lucide="search"></i>
+
+                    <input
+                        type="search"
+                        id="knowledgeSearch"
+                        placeholder="Search Wi-Fi, passwords, printers, software..."
+                        aria-label="Search knowledge base"
+                    >
+
+                    <button type="button" id="knowledgeSearchButton">
+                        Search
+                    </button>
+
+                </div>
+
+                <div class="popular-searches">
+
+                    <span>Popular searches:</span>
+
+                    <button type="button" data-search-term="Wi-Fi">
+                        Wi-Fi
+                    </button>
+
+                    <button type="button" data-search-term="Password">
+                        Password
+                    </button>
+
+                    <button type="button" data-search-term="Printer">
+                        Printer
+                    </button>
+
+                    <button type="button" data-search-term="Email">
+                        Email
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- PAGE INTRODUCTION -->
+            <div class="knowledge-intro">
+
+                <div>
+                    <h2>Browse by Category</h2>
+                    <p>Select a category to find relevant troubleshooting information.</p>
+                </div>
+
+                <button type="button" id="showAllArticles"
+                        class="knowledge-clear">
+                    View all articles
+                    <i data-lucide="arrow-right"></i>
+                </button>
+
+            </div>
+
+
+            <!-- CATEGORY CARDS -->
+            <section class="knowledge-category-grid">
+
+                <button class="knowledge-category"
+                        data-category="Network">
+
+                    <div class="category-icon category-blue">
+                        <i data-lucide="wifi"></i>
+                    </div>
+
+                    <strong>Network & Internet</strong>
+
+                    <span id="networkCount">0 articles</span>
+
+                </button>
+
+
+                <button class="knowledge-category"
+                        data-category="Hardware">
+
+                    <div class="category-icon category-orange">
+                        <i data-lucide="monitor"></i>
+                    </div>
+
+                    <strong>Hardware</strong>
+
+                    <span id="hardwareCount">0 articles</span>
+
+                </button>
+
+
+                <button class="knowledge-category"
+                        data-category="Software">
+
+                    <div class="category-icon category-purple">
+                        <i data-lucide="laptop"></i>
+                    </div>
+
+                    <strong>Software & Applications</strong>
+
+                    <span id="softwareCount">0 articles</span>
+
+                </button>
+
+
+                <button class="knowledge-category"
+                        data-category="Accounts">
+
+                    <div class="category-icon category-green">
+                        <i data-lucide="user-round"></i>
+                    </div>
+
+                    <strong>Accounts & Access</strong>
+
+                    <span id="accountsCount">0 articles</span>
+
+                </button>
+
+
+                <button class="knowledge-category"
+                        data-category="Security">
+
+                    <div class="category-icon category-red">
+                        <i data-lucide="shield-check"></i>
+                    </div>
+
+                    <strong>Cybersecurity</strong>
+
+                    <span id="securityCount">0 articles</span>
+
+                </button>
+
+
+                <button class="knowledge-category"
+                        data-category="General">
+
+                    <div class="category-icon category-teal">
+                        <i data-lucide="help-circle"></i>
+                    </div>
+
+                    <strong>General IT Support</strong>
+
+                    <span id="generalCount">0 articles</span>
+
+                </button>
+
+            </section>
+
+
+            <!-- FEATURED ARTICLES -->
+            <section class="knowledge-featured">
+
+                <div class="knowledge-intro">
+
+                    <div>
+                        <h2>Popular Help Articles</h2>
+                        <p>Frequently accessed troubleshooting guides.</p>
+                    </div>
+
+                    <span class="article-total" id="articleTotal">
+                        0 articles
+                    </span>
+
+                </div>
+
+
+                <!-- ARTICLE LIST -->
+                <div class="knowledge-articles" id="knowledgeArticles">
+
+                    <!-- JavaScript generates article cards -->
+
+                </div>
+
+
+                <!-- NO RESULTS -->
+                <div class="knowledge-empty" id="knowledgeEmpty">
+
+                    <div class="empty-icon">
+                        <i data-lucide="search-x"></i>
+                    </div>
+
+                    <h3>No articles found</h3>
+
+                    <p>
+                        Try using different keywords or select another category.
+                    </p>
+
+                    <button type="button" class="secondary-button"
+                            id="resetKnowledge">
+                        Clear filters
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- SUPPORT BANNER -->
+            <section class="knowledge-support-banner">
+
+                <div class="knowledge-support-icon">
+                    <i data-lucide="headset"></i>
+                </div>
+
+                <div class="knowledge-support-text">
+
+                    <h2>Still need help?</h2>
+
+                    <p>
+                        Can't find the solution? Our IT support team can help
+                        you investigate and resolve your problem.
+                    </p>
+
+                </div>
+
+                <a href="submit-ticket.html" class="primary-button">
+                    Submit a Ticket
+                    <i data-lucide="arrow-right"></i>
+                </a>
+
+            </section>
+
+
+            <footer class="footer">
+                <span>Â© 2026 Sam Enterprise. All rights reserved.</span>
+                <span>IT Knowledge Centre</span>
+            </footer>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- ARTICLE DETAIL MODAL -->
+<div class="modal-overlay" id="articleModal">
+
+    <article class="article-modal">
+
+        <header class="article-modal-header">
+
+            <div>
+                <span class="date-label">KNOWLEDGE BASE ARTICLE</span>
+                <span class="article-reference" id="articleReference">
+                    KB-001
+                </span>
+            </div>
+
+            <button type="button" class="modal-close"
+                    id="closeArticleModal"
+                    aria-label="Close article">
+                <i data-lucide="x"></i>
+            </button>
+
+        </header>
+
+
+        <div class="article-modal-body" id="articleModalBody">
+
+            <!-- JavaScript inserts article content -->
+
+        </div>
+
+
+        <!-- FEEDBACK -->
+        <div class="article-feedback" id="articleFeedback">
+
+            <h3>Was this article helpful?</h3>
+
+            <p>Your feedback helps us improve our support guides.</p>
+
+            <div class="feedback-buttons">
+
+                <button type="button" id="helpfulYes"
+                        class="feedback-button">
+                    <i data-lucide="thumbs-up"></i>
+                    Yes, helpful
+                </button>
+
+                <button type="button" id="helpfulNo"
+                        class="feedback-button">
+                    <i data-lucide="thumbs-down"></i>
+                    Not helpful
+                </button>
+
+            </div>
+
+            <p id="feedbackMessage" class="feedback-message"></p>
+
+        </div>
+
+    </article>
+
+</div>
+
+
+<script src="../js/demo-engine.js"></script>
+<script src="../js/app.js"></script>
+<script src="../js/knowledge-base.js"></script>
+
+</body>
+
+</html>
+
