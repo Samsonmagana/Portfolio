@@ -1,0 +1,451 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Tickets | Sam Enterprise</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+
+<div class="app-container">
+
+    <aside class="sidebar" id="sidebar">
+
+        <div class="brand">
+            <div class="brand-icon">S</div>
+            <div>
+                <h2>SAM ENTERPRISE</h2>
+                <span>IT SERVICE MANAGEMENT</span>
+            </div>
+        </div>
+
+        <div class="sidebar-label">EMPLOYEE PORTAL</div>
+
+        <nav class="navigation">
+
+            <a href="../index.html" class="nav-link">
+                <i data-lucide="layout-dashboard"></i>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="submit-ticket.html" class="nav-link">
+                <i data-lucide="plus-circle"></i>
+                <span>Submit a Ticket</span>
+            </a>
+
+            <a href="tickets.html" class="nav-link active">
+                <i data-lucide="ticket"></i>
+                <span>My Tickets</span>
+            </a>
+
+            <a href="knowledge-base.html" class="nav-link">
+                <i data-lucide="book-open"></i>
+                <span>Knowledge Base</span>
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <div class="support-card">
+                <i data-lucide="headset"></i>
+                <h4>Need assistance?</h4>
+                <p>Submit a support request and our IT team will assist you.</p>
+                <a href="submit-ticket.html">Get Support →</a>
+            </div>
+
+            <div class="user-profile">
+                <div class="avatar" id="sidebarUserAvatar">U</div>
+
+                <div class="user-info">
+                    <strong id="sidebarUserName">Loading...</strong>
+                    <span id="sidebarUserRole">Loading...</span>
+                </div>
+
+                <i data-lucide="chevron-down"></i>
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <div class="topbar-left">
+
+                <button class="menu-toggle" id="menuToggle"
+                        aria-label="Toggle navigation">
+                    <i data-lucide="menu"></i>
+                </button>
+
+                <div>
+                    <span class="breadcrumb">Employee Portal /</span>
+                    <strong>My Tickets</strong>
+                </div>
+
+            </div>
+
+            <div class="topbar-right">
+
+                <div class="system-status">
+                    <span class="status-dot"></span>
+                    IT Support Available
+                </div>
+
+                <button class="icon-button" aria-label="Notifications">
+                    <i data-lucide="bell"></i>
+                </button>
+
+                <div class="topbar-user">
+
+                    <div class="avatar" id="topbarUserAvatar">U</div>
+
+                    <div>
+                        <strong id="topbarUserName">Loading...</strong>
+                        <span id="topbarUserRole">Loading...</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <section class="dashboard-content">
+
+            <div class="welcome-section">
+
+                <div>
+                    <p class="date-label" id="ticketsDate"></p>
+                    <h1>My Support Tickets</h1>
+                    <p>Track your IT support requests and monitor their progress.</p>
+                </div>
+
+                <a href="submit-ticket.html" class="primary-button">
+                    <i data-lucide="plus"></i>
+                    Create New Ticket
+                </a>
+
+            </div>
+
+
+            <section class="stats-grid">
+
+                <article class="stat-card">
+                    <div class="stat-top">
+                        <span>Total Tickets</span>
+                        <div class="stat-icon blue">
+                            <i data-lucide="ticket"></i>
+                        </div>
+                    </div>
+                    <h2 id="totalTickets">0</h2>
+                    <p class="stat-description">All accessible support requests</p>
+                </article>
+
+                <article class="stat-card">
+                    <div class="stat-top">
+                        <span>Open</span>
+                        <div class="stat-icon orange">
+                            <i data-lucide="folder-open"></i>
+                        </div>
+                    </div>
+                    <h2 id="openTickets">0</h2>
+                    <p class="stat-description">Awaiting IT support</p>
+                </article>
+
+                <article class="stat-card">
+                    <div class="stat-top">
+                        <span>In Progress</span>
+                        <div class="stat-icon purple">
+                            <i data-lucide="refresh-cw"></i>
+                        </div>
+                    </div>
+                    <h2 id="progressTickets">0</h2>
+                    <p class="stat-description">Currently being handled</p>
+                </article>
+
+                <article class="stat-card">
+                    <div class="stat-top">
+                        <span>Resolved</span>
+                        <div class="stat-icon green">
+                            <i data-lucide="check-circle"></i>
+                        </div>
+                    </div>
+                    <h2 id="resolvedTickets">0</h2>
+                    <p class="stat-description">Successfully completed</p>
+                </article>
+
+            </section>
+
+
+            <section class="content-panel my-tickets-panel">
+
+                <div class="panel-header tickets-panel-heading">
+
+                    <div>
+                        <h2>Support Request History</h2>
+                        <p>View and track your accessible IT requests.</p>
+                    </div>
+
+                    <span class="ticket-record-count" id="recordCount">
+                        0 records
+                    </span>
+
+                </div>
+
+
+                <div class="ticket-toolbar">
+
+                    <div class="ticket-search">
+                        <i data-lucide="search"></i>
+
+                        <input
+                            type="search"
+                            id="ticketSearch"
+                            placeholder="Search by ticket ID or issue..."
+                            aria-label="Search tickets"
+                        >
+                    </div>
+
+                    <button type="button" id="clearSearch" class="clear-search">
+                        Clear search
+                    </button>
+
+                </div>
+
+
+                <div class="ticket-filters">
+
+                    <button class="filter-button active"
+                            data-filter="All" aria-pressed="true">
+                        All Tickets
+                        <span id="allFilterCount">0</span>
+                    </button>
+
+                    <button class="filter-button"
+                            data-filter="Open" aria-pressed="false">
+                        Open
+                        <span id="openFilterCount">0</span>
+                    </button>
+
+                    <button class="filter-button"
+                            data-filter="In Progress" aria-pressed="false">
+                        In Progress
+                        <span id="progressFilterCount">0</span>
+                    </button>
+
+                    <button class="filter-button"
+                            data-filter="Pending" aria-pressed="false">
+                        Pending
+                        <span id="pendingFilterCount">0</span>
+                    </button>
+
+                    <button class="filter-button"
+                            data-filter="Resolved" aria-pressed="false">
+                        Resolved
+                        <span id="resolvedFilterCount">0</span>
+                    </button>
+
+                </div>
+
+
+                <div class="table-wrapper" id="ticketTableWrapper">
+
+                    <table class="my-tickets-table">
+
+                        <thead>
+                            <tr>
+                                <th>Ticket ID</th>
+                                <th>Issue Details</th>
+                                <th>Date Submitted</th>
+                                <th>Priority</th>
+                                <th>Status</th>
+                                <th>Assigned Technician</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="myTicketsTable">
+                            <tr>
+                                <td colspan="7">Loading support tickets...</td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+                <div class="empty-state" id="emptyState">
+
+                    <div class="empty-icon">
+                        <i data-lucide="inbox"></i>
+                    </div>
+
+                    <h3>No support tickets found</h3>
+
+                    <p id="emptyMessage">
+                        You haven't submitted any support requests yet.
+                    </p>
+
+                    <a href="submit-ticket.html" class="primary-button">
+                        <i data-lucide="plus"></i>
+                        Submit Your First Ticket
+                    </a>
+
+                </div>
+
+            </section>
+
+
+            <footer class="footer">
+                <span>© 2026 Sam Enterprise. All rights reserved.</span>
+                <span>Employee Support Portal</span>
+            </footer>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<div class="modal-overlay" id="ticketDetailsModal">
+
+    <div class="ticket-details-modal">
+
+        <div class="details-header">
+
+            <div>
+                <span class="date-label">SUPPORT REQUEST DETAILS</span>
+                <h2 id="detailTicketId">Loading...</h2>
+            </div>
+
+            <button class="modal-close" id="closeDetails"
+                    aria-label="Close ticket details">
+                <i data-lucide="x"></i>
+            </button>
+
+        </div>
+
+        <div id="ticketDetailsContent">
+            <!-- Ticket details are inserted here -->
+        </div>
+
+    </div>
+
+</div>
+
+
+<script src="../js/auth.js"></script>
+
+<script>
+    async function initializeMyTicketsPage() {
+
+        try {
+
+            const user = await SamAuth.requireAuth();
+
+            if (!user) {
+                return;
+            }
+
+            const fullName = [
+                user.first_name,
+                user.last_name
+            ].filter(Boolean).join(" ");
+
+            const roleLabels = {
+                owner: "Owner",
+                administrator: "Administrator",
+                it_manager: "IT Manager",
+                technician: "Technician",
+                employee: "Employee",
+                auditor: "Auditor"
+            };
+
+            const roleLabel =
+                roleLabels[user.role] || user.role || "User";
+
+            const initials = [
+                user.first_name,
+                user.last_name
+            ]
+                .filter(Boolean)
+                .map(name => name.charAt(0).toUpperCase())
+                .join("")
+                .slice(0, 2) || "U";
+
+            const profileElements = [
+                ["sidebarUserAvatar", initials],
+                ["sidebarUserName", fullName],
+                ["sidebarUserRole", roleLabel],
+                ["topbarUserAvatar", initials],
+                ["topbarUserName", fullName],
+                ["topbarUserRole", roleLabel]
+            ];
+
+            profileElements.forEach(([id, value]) => {
+
+                const element = document.getElementById(id);
+
+                if (element) {
+                    element.textContent = value;
+                }
+
+            });
+
+            const appScript = document.createElement("script");
+            appScript.src = "../js/app.js";
+
+            appScript.onload = function () {
+
+                const ticketScript = document.createElement("script");
+                ticketScript.src = "../js/tickets.js";
+
+                ticketScript.onerror = function () {
+                    console.error("Unable to load tickets.js");
+                    alert("Unable to load the ticket application.");
+                };
+
+                document.body.appendChild(ticketScript);
+
+            };
+
+            appScript.onerror = function () {
+                console.error("Unable to load app.js");
+                alert("Unable to load the application interface.");
+            };
+
+            document.body.appendChild(appScript);
+
+        } catch (error) {
+
+            console.error("My Tickets initialization error:", error);
+
+            alert(
+                "Unable to open My Tickets. Please log in again."
+            );
+
+            window.location.href = "login.html";
+
+        }
+
+    }
+
+    initializeMyTicketsPage();
+</script>
+
+</body>
+</html>

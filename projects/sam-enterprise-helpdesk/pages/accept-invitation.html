@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accept Invitation | Sam Enterprise</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+    <main class="auth-container">
+        <section class="auth-card">
+            <h1>Sam Enterprise</h1>
+            <h2>Accept Your Invitation</h2>
+
+            <p>Create your password to activate your employee account.</p>
+
+            <form id="acceptInvitationForm">
+                <div class="form-group">
+                    <label for="password">Create Password</label>
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        minlength="12"
+                        required
+                        autocomplete="new-password"
+                        placeholder="At least 12 characters"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input
+                        type="password"
+                        id="confirmPassword"
+                        name="confirmPassword"
+                        minlength="12"
+                        required
+                        autocomplete="new-password"
+                        placeholder="Enter your password again"
+                    >
+                </div>
+
+                <button type="submit" id="acceptButton">
+                    Activate Account
+                </button>
+
+                <p id="message" role="status" aria-live="polite"></p>
+            </form>
+        </section>
+    </main>
+
+    <script src="../js/accept-invitation.js"></script>
+</body>
+</html>

@@ -1,0 +1,602 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="Sam Enterprise IT Service Management and Helpdesk Platform">
+
+    <title>Sam Enterprise | IT Helpdesk</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+
+<div class="app-container">
+
+    <aside class="sidebar" id="sidebar">
+
+        <div class="brand">
+            <div class="brand-icon">S</div>
+
+            <div>
+                <h2>SAM ENTERPRISE</h2>
+                <span>IT SERVICE MANAGEMENT</span>
+            </div>
+        </div>
+
+        <div class="sidebar-label">WORKSPACE</div>
+
+        <nav class="navigation">
+
+            <a href="index.html" class="nav-link active">
+                <i data-lucide="layout-dashboard"></i>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="pages/tickets.html" class="nav-link">
+                <i data-lucide="ticket"></i>
+                <span>My Tickets</span>
+                <span class="nav-count" id="sidebarTicketCount">0</span>
+            </a>
+
+            <a href="pages/submit-ticket.html" class="nav-link">
+                <i data-lucide="plus-circle"></i>
+                <span>Submit a Ticket</span>
+            </a>
+
+        </nav>
+
+        <div class="sidebar-label">IT OPERATIONS</div>
+
+        <nav class="navigation">
+
+            <a href="pages/technician.html" class="nav-link">
+                <i data-lucide="headset"></i>
+                <span>Technician Workspace</span>
+            </a>
+
+            <a href="pages/assets.html" class="nav-link">
+                <i data-lucide="monitor"></i>
+                <span>IT Asset Management</span>
+            </a>
+
+            <a href="pages/knowledge-base.html" class="nav-link">
+                <i data-lucide="book-open"></i>
+                <span>Knowledge Base</span>
+            </a>
+
+        </nav>
+
+        <div class="sidebar-label">MANAGEMENT</div>
+
+        <nav class="navigation">
+
+            <a href="pages/admin.html" class="nav-link">
+                <i data-lucide="shield-check"></i>
+                <span>Admin Dashboard</span>
+            </a>
+
+            <a href="pages/reports.html" class="nav-link">
+                <i data-lucide="chart-no-axes-combined"></i>
+                <span>Reports & Analytics</span>
+            </a>
+
+            <a href="pages/users.html" class="nav-link">
+                <i data-lucide="user-cog"></i>
+                <span>User Management</span>
+            </a>
+
+            <a href="pages/settings.html" class="nav-link">
+                <i data-lucide="settings"></i>
+                <span>System Settings</span>
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <div class="support-card">
+
+                <i data-lucide="headset"></i>
+
+                <h4>Need assistance?</h4>
+
+                <p>
+                    Our IT support team is available to help.
+                </p>
+
+                <a href="pages/submit-ticket.html">
+                    Get Support →
+                </a>
+
+            </div>
+
+            <div class="user-profile">
+
+                <div class="avatar" id="sidebarUserAvatar">U</div>
+
+                <div class="user-info">
+
+                    <strong id="sidebarUserName">Loading user...</strong>
+
+                    <span id="sidebarUserRole">Verifying account...</span>
+
+                </div>
+
+                <i data-lucide="chevron-down"></i>
+
+            </div>
+
+        </div>
+
+    </aside>
+
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <div class="topbar-left">
+
+                <button class="menu-toggle"
+                        id="menuToggle"
+                        aria-label="Toggle navigation">
+
+                    <i data-lucide="menu"></i>
+
+                </button>
+
+                <div>
+
+                    <span class="breadcrumb">
+                        Workspace /
+                    </span>
+
+                    <strong>Dashboard</strong>
+
+                </div>
+
+            </div>
+
+            <div class="topbar-right">
+
+                <div class="system-status">
+
+                    <span class="status-dot"></span>
+
+                    Authenticated Session
+
+                </div>
+
+                <button class="icon-button"
+                        aria-label="Notifications">
+
+                    <i data-lucide="bell"></i>
+
+                    <span class="notification-dot"></span>
+
+                </button>
+
+                <div class="topbar-user">
+
+                    <div class="avatar" id="topbarUserAvatar">U</div>
+
+                    <div>
+
+                        <strong id="topbarUserName">Loading user...</strong>
+
+                        <span id="topbarUserRole">Verifying account...</span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+        <section class="dashboard-content">
+
+            <div class="welcome-section">
+
+                <div>
+
+                    <p class="date-label" id="currentDate"></p>
+
+                    <h1>
+                        <span id="dashboardGreeting">Welcome</span>,
+                        <span id="dashboardUserName">User</span>
+                        <span>👋</span>
+                    </h1>
+
+                    <p>
+                        Here's what's happening across your IT department today.
+                    </p>
+
+                </div>
+
+                <a href="pages/submit-ticket.html"
+                   class="primary-button">
+
+                    <i data-lucide="plus"></i>
+
+                    Create Ticket
+
+                </a>
+
+            </div>
+
+            <section class="stats-grid">
+
+                <article class="stat-card">
+
+                    <div class="stat-top">
+
+                        <span>Total Tickets</span>
+
+                        <div class="stat-icon blue">
+                            <i data-lucide="ticket"></i>
+                        </div>
+
+                    </div>
+
+                    <h2 id="dashboardTotalTickets">0</h2>
+
+                    <p class="stat-description">
+                        All recorded support requests
+                    </p>
+
+                    <span class="stat-footer">
+                        Across all departments
+                    </span>
+
+                </article>
+
+                <article class="stat-card">
+
+                    <div class="stat-top">
+
+                        <span>Open Tickets</span>
+
+                        <div class="stat-icon orange">
+                            <i data-lucide="folder-open"></i>
+                        </div>
+
+                    </div>
+
+                    <h2 id="dashboardOpenTickets">0</h2>
+
+                    <p class="stat-description">
+                        Awaiting resolution
+                    </p>
+
+                    <span class="stat-footer">
+                        Requires attention
+                    </span>
+
+                </article>
+
+                <article class="stat-card">
+
+                    <div class="stat-top">
+
+                        <span>In Progress</span>
+
+                        <div class="stat-icon purple">
+                            <i data-lucide="refresh-cw"></i>
+                        </div>
+
+                    </div>
+
+                    <h2 id="dashboardProgressTickets">0</h2>
+
+                    <p class="stat-description">
+                        Currently being handled
+                    </p>
+
+                    <span class="stat-footer">
+                        Assigned to technicians
+                    </span>
+
+                </article>
+
+                <article class="stat-card">
+
+                    <div class="stat-top">
+
+                        <span>Resolved Today</span>
+
+                        <div class="stat-icon green">
+                            <i data-lucide="check-circle"></i>
+                        </div>
+
+                    </div>
+
+                    <h2 id="dashboardResolvedToday">0</h2>
+
+                    <p class="stat-description">
+                        Successfully resolved
+                    </p>
+
+                    <span class="stat-footer">
+                        Today's performance
+                    </span>
+
+                </article>
+
+            </section>
+
+            <section class="content-panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <h2>Recent Support Tickets</h2>
+
+                        <p>
+                            Monitor and manage recent IT incidents.
+                        </p>
+
+                    </div>
+
+                    <a href="pages/tickets.html" class="text-link">
+                        View all tickets →
+                    </a>
+
+                </div>
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+                                <th>Ticket ID</th>
+                                <th>Issue</th>
+                                <th>Department</th>
+                                <th>Priority</th>
+                                <th>Status</th>
+                                <th>Assigned To</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="ticketTable">
+                            <!-- Ticket records are loaded by dashboard.js. -->
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+                <p class="dashboard-empty" id="dashboardTicketEmpty">
+                    No support tickets have been submitted yet.
+                </p>
+
+            </section>
+
+            <section class="bottom-grid">
+
+                <div class="content-panel">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <h2>Ticket Priorities</h2>
+                            <p>Current ticket distribution</p>
+                        </div>
+
+                    </div>
+
+                    <div class="priority-list">
+
+                        <div class="priority-row">
+
+                            <span>Critical</span>
+
+                            <div class="progress-track">
+                                <div class="progress-fill critical-fill"
+                                     id="dashboardCriticalBar"></div>
+                            </div>
+
+                            <strong id="dashboardCriticalCount">0</strong>
+
+                        </div>
+
+                        <div class="priority-row">
+
+                            <span>High</span>
+
+                            <div class="progress-track">
+                                <div class="progress-fill high-fill"
+                                     id="dashboardHighBar"></div>
+                            </div>
+
+                            <strong id="dashboardHighCount">0</strong>
+
+                        </div>
+
+                        <div class="priority-row">
+
+                            <span>Medium</span>
+
+                            <div class="progress-track">
+                                <div class="progress-fill medium-fill"
+                                     id="dashboardMediumBar"></div>
+                            </div>
+
+                            <strong id="dashboardMediumCount">0</strong>
+
+                        </div>
+
+                        <div class="priority-row">
+
+                            <span>Low</span>
+
+                            <div class="progress-track">
+                                <div class="progress-fill low-fill"
+                                     id="dashboardLowBar"></div>
+                            </div>
+
+                            <strong id="dashboardLowCount">0</strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="content-panel activity-panel">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <h2>Recent Activity</h2>
+                            <p>Latest IT support updates</p>
+                        </div>
+
+                    </div>
+
+                    <div id="dashboardActivity">
+                        <!-- Recent activity is loaded by dashboard.js. -->
+                    </div>
+
+                    <p class="dashboard-empty" id="dashboardActivityEmpty">
+                        No recent IT activities recorded.
+                    </p>
+
+                </div>
+
+            </section>
+
+            <footer class="footer">
+
+                <span>
+                    © 2026 Sam Enterprise. All rights reserved.
+                </span>
+
+                <span>
+                    IT Service Management Platform · Version 1.0
+                </span>
+
+            </footer>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script src="js/auth.js"></script>
+
+<script>
+    /**
+     * Initializes the dashboard after successful authentication.
+     */
+    async function initializeDashboard() {
+
+        const user = await SamAuth.requireAuth();
+
+        if (!user) {
+            return;
+        }
+
+        const fullName = [
+            user.first_name,
+            user.last_name
+        ].filter(Boolean).join(" ");
+
+        const firstName = user.first_name || "User";
+
+        const roleLabels = {
+            owner: "Owner",
+            administrator: "Administrator",
+            it_manager: "IT Manager",
+            technician: "Technician",
+            employee: "Employee",
+            auditor: "Auditor"
+        };
+
+        const roleLabel = roleLabels[user.role] || user.role;
+
+        const initials = [
+            user.first_name,
+            user.last_name
+        ]
+            .filter(Boolean)
+            .map(name => name.charAt(0).toUpperCase())
+            .join("")
+            .slice(0, 2);
+
+        document.getElementById("sidebarUserName").textContent = fullName;
+        document.getElementById("sidebarUserRole").textContent = roleLabel;
+
+        document.getElementById("topbarUserName").textContent = fullName;
+        document.getElementById("topbarUserRole").textContent = roleLabel;
+
+        document.getElementById("dashboardGreeting").textContent =
+            "Welcome";
+
+        document.getElementById("dashboardUserName").textContent =
+            firstName;
+
+        document.getElementById("sidebarUserAvatar").textContent =
+            initials || "U";
+
+        document.getElementById("topbarUserAvatar").textContent =
+            initials || "U";
+
+        /**
+         * Load existing dashboard functionality after authentication.
+         */
+        await loadDashboardScript("js/app.js");
+        await loadDashboardScript("js/dashboard.js");
+
+        if (window.lucide) {
+            window.lucide.createIcons();
+        }
+    }
+
+    /**
+     * Loads a frontend JavaScript file and waits for it to finish loading.
+     */
+    function loadDashboardScript(source) {
+
+        return new Promise((resolve, reject) => {
+
+            const script = document.createElement("script");
+
+            script.src = source;
+
+            script.onload = resolve;
+
+            script.onerror = () => {
+                reject(new Error(`Unable to load ${source}`));
+            };
+
+            document.body.appendChild(script);
+        });
+    }
+
+    initializeDashboard().catch(error => {
+        console.error("Dashboard initialization error:", error);
+
+        document.body.innerHTML = `
+            <main style="padding: 40px; font-family: Arial, sans-serif;">
+                <h2>Dashboard initialization failed</h2>
+                <p>Unable to load your dashboard. Please refresh the page.</p>
+            </main>
+        `;
+    });
+</script>
+
+</body>
+</html>
