@@ -69,12 +69,20 @@ const STATS = [
 
 const PROJECTS = [
   {
-    title:   "AI Cybersecurity Threat Detection System",
-    status:  "In development",
-    summary: "A SOC-style detection pipeline that ingests system logs into Elasticsearch, applies machine-learning models to spot brute-force attempts and anomalous behaviour, and assigns each event a risk score. Analysts work from Kibana dashboards with role-based access control, and high-risk events trigger automated security alerts. The whole stack runs in Docker, with a Python collector shipping logs, a detector scoring them, and Kibana as the analyst view.",
-    tags:    ["Python", "Elasticsearch", "Kibana", "scikit-learn", "Docker", "RBAC"],
-    code:    "",   // TODO: link the repo
-    live:    ""    // leave empty if there is no hosted demo
+    title: "Sam Enterprise IT Helpdesk",
+    status: "Functional portfolio project",
+    summary: "A full-stack enterprise IT helpdesk system designed to manage IT support operations. Features include role-based access control across six user roles, ticket creation and tracking, technician assignment, asset management, asset allocation and returns, maintenance records, activity logs, dashboards and a knowledge base. Developed using Node.js, Express.js, PostgreSQL, HTML, CSS and vanilla JavaScript.",
+    tags: ["JavaScript", "Node.js", "Express.js", "PostgreSQL", "REST API", "RBAC", "HTML", "CSS"],
+    code: "https://github.com/Samsonmagana/Portfolio/tree/main/projects/sam-enterprise-helpdesk",
+    live: ""
+  },
+  {
+    title: "AI Cybersecurity Threat Detection System",
+    status: "In development",
+    summary: "A SOC-style detection pipeline that ingests system logs into Elasticsearch, applies machine-learning models to identify brute-force attempts and anomalous behaviour, and assigns each event a risk score. Analysts work from Kibana dashboards with role-based access control, and high-risk events trigger automated security alerts.",
+    tags: ["Python", "Elasticsearch", "Kibana", "scikit-learn", "Docker", "RBAC"],
+    code: "",
+    live: ""
   }
 ];
 
